@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  part_name: MyString
+  part_no: MyString
+  part_description: MyText
+
+two:
+  part_name: MyString
+  part_no: MyString
+  part_description: MyText

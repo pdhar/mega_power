@@ -1,0 +1,14 @@
+<%= simple_form_for(@part, :validate => true) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :part_name %>
+    <%= f.input :part_no %>
+    <%= f.input :part_cost %>
+    <%= f.input :part_description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

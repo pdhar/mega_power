@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Labour no:</b>
+  <%= @labour.labour_no %>
+</p>
+
+<p>
+  <b>Labour name:</b>
+  <%= @labour.labour_name %>
+</p>
+
+<p>
+  <b>Labour description:</b>
+  <%= @labour.labour_description %>
+</p>
+
+<p>
+  <b>Labour cost per hr:</b>
+  <%= @labour.labour_cost_per_hr %>
+</p>
+
+
+<%= link_to 'Edit', edit_labour_path(@labour) %> |
+<%= link_to 'Back', labours_path %>

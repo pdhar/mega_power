@@ -1,0 +1,29 @@
+<h1>Listing labours</h1>
+
+<table class="table table-condensed">
+  <tr>
+    <th>Labour no</th>
+    <th>Labour name</th>
+    <th>Labour description</th>
+    <th>Labour cost per hr</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @labours.each do |labour| %>
+  <tr>
+    <td><%= labour.labour_no %></td>
+    <td><%= labour.labour_name %></td>
+    <td><%= labour.labour_description %></td>
+    <td><%= labour.labour_cost_per_hr %></td>
+    <td><%= link_to 'Show', labour %></td>
+    <td><%= link_to 'Edit', edit_labour_path(labour) %></td>
+    <td><%= link_to 'Destroy', labour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Labour', new_labour_path %>

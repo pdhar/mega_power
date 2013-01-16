@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  price: 9.99
+  depreciation: 9.99
+  model_no: MyString
+  eng_model_no: MyString
+  serial_no: MyString
+  eng_serial_no: MyString
+  alternator_sr_no: MyString
+
+two:
+  price: 9.99
+  depreciation: 9.99
+  model_no: MyString
+  eng_model_no: MyString
+  serial_no: MyString
+  eng_serial_no: MyString
+  alternator_sr_no: MyString

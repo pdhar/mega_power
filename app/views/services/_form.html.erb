@@ -1,0 +1,15 @@
+<%= simple_form_for(@service, :validate => true) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :service_name %>
+    <%= f.input :service_description %>
+    <%= f.input :service_no %>
+    
+    <%= f.association :parts, :label_method => :part_name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

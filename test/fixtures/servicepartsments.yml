@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  service_id: 1
+  part_id: 1
+  date_added: 2013-01-15 20:58:30
+
+two:
+  service_id: 1
+  part_id: 1
+  date_added: 2013-01-15 20:58:30

@@ -1,4 +1,16 @@
 MegaPower::Application.routes.draw do
+  resources :equipment
+
+
+  resources :services
+
+
+  resources :labours
+
+
+  resources :parts
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,29 @@
+<h1>Listing services</h1>
+
+<table class="table table-condensed">
+  <tr>
+    <th>Service name</th>
+    <th>Service description</th>
+    <th>Service no</th>
+    <th>Service Cost</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @services.each do |service| %>
+  <tr>
+    <td><%= service.service_name %></td>
+    <td><%= service.service_description %></td>
+    <td><%= service.service_no %></td>
+    <td><%= service.service_cost %></td>
+    <td><%= link_to 'Show', service %></td>
+    <td><%= link_to 'Edit', edit_service_path(service) %></td>
+    <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Service', new_service_path %>

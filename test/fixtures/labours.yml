@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  labour_no: MyString
+  labour_name: MyString
+  labour_description: MyString
+  labour_cost_per_hr: 9.99
+
+two:
+  labour_no: MyString
+  labour_name: MyString
+  labour_description: MyString
+  labour_cost_per_hr: 9.99

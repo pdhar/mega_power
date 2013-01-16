@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Price:</b>
+  <%= @equipment.price %>
+</p>
+
+<p>
+  <b>Depreciation:</b>
+  <%= @equipment.depreciation %>
+</p>
+
+<p>
+  <b>Model no:</b>
+  <%= @equipment.model_no %>
+</p>
+
+<p>
+  <b>Eng model no:</b>
+  <%= @equipment.eng_model_no %>
+</p>
+
+<p>
+  <b>Serial no:</b>
+  <%= @equipment.serial_no %>
+</p>
+
+<p>
+  <b>Eng serial no:</b>
+  <%= @equipment.eng_serial_no %>
+</p>
+
+<p>
+  <b>Alternator sr no:</b>
+  <%= @equipment.alternator_sr_no %>
+</p>
+
+
+<%= link_to 'Edit', edit_equipment_path(@equipment) %> |
+<%= link_to 'Back', equipment_index_path %>

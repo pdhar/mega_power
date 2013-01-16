@@ -5,7 +5,7 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg', '0.12.2'
 
 
 # Gems used only for assets and not required
@@ -20,7 +20,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'json'
 gem 'jquery-rails'
+gem 'bootstrap-sass', '2.1'
+gem 'simple_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

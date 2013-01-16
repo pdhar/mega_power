@@ -1,0 +1,50 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<p>
+	<b>Service name:</b>
+	<%= @service.service_name %>
+</p>
+
+<p>
+	<b>Service description:</b>
+	<%= @service.service_description %>
+</p>
+
+<p>
+	<b>Service no:</b>
+	<%= @service.service_no %>
+</p>
+
+<p>
+	<b>Total Service Cost:</b>
+	<%= @service.service_cost %>
+</p>
+
+<br />
+
+<h3>Parts Used for this Service</h3>
+
+<table class="table table-condensed">
+	<tr>
+		<th>Part name</th>
+		<th>Part no</th>
+		<th>Part Cost</th>
+		<th>Part description</th>
+	</tr>
+
+	<% @parts.each do |s| %>
+	<tr>
+		<td><%= s.part_name %></td>
+		<td><%= s.part_no %></td>
+		<td><%= s.part_cost %></td>
+		<td><%= s.part_description %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Back', services_path %>
