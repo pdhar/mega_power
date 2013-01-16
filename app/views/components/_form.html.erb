@@ -1,0 +1,29 @@
+<%= simple_form_for(@component, :validate => true) do |f| %>
+<%= f.error_notification %>
+
+<div class="form-inputs">
+	<%= f.input :price %>
+	<%= f.input :depreciation %>
+	<%= f.input :model_no %>
+	<%= f.input :eng_model_no %>
+	<%= f.input :serial_no %>
+	<%= f.input :eng_serial_no %>
+	<%= f.input :alternator_sr_no %>
+
+	<div id="componentmonths">
+		<%= f.simple_fields_for :componentmonths do |builder| %>
+
+		<%= render 'componentmonth_fields' , f: builder%>
+
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association "Add Month", f, :componentmonths %>
+		</div>
+	</div>
+</div>
+
+<div class="form-actions">
+	<%= f.button :submit %>
+</div>
+<% end %>
+

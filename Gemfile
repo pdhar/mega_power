@@ -20,6 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'cocoon'
 gem 'json'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.1'

@@ -11,7 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116085724) do
+ActiveRecord::Schema.define(:version => 20130116141201) do
+
+  create_table "component_monthlies", :force => true do |t|
+    t.integer  "component_id"
+    t.date     "month"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "componentmonths", :force => true do |t|
+    t.integer  "component_id"
+    t.date     "date_month"
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "components", :force => true do |t|
+    t.decimal  "price"
+    t.decimal  "depreciation"
+    t.string   "model_no"
+    t.string   "eng_model_no"
+    t.string   "serial_no"
+    t.string   "eng_serial_no"
+    t.string   "alternator_sr_no"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "equipment", :force => true do |t|
+    t.decimal  "price"
+    t.decimal  "depreciation"
+    t.string   "model_no"
+    t.string   "eng_model_no"
+    t.string   "serial_no"
+    t.string   "eng_serial_no"
+    t.string   "alternator_sr_no"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "labours", :force => true do |t|
     t.string   "labour_no"

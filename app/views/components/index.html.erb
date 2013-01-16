@@ -1,0 +1,35 @@
+<h1>Listing Equipment</h1>
+
+<table class="table table-condensed">
+  <tr>
+    <th>Price</th>
+    <th>Depreciation</th>
+    <th>Model no</th>
+    <th>Eng model no</th>
+    <th>Serial no</th>
+    <th>Eng serial no</th>
+    <th>Alternator sr no</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @components.each do |component| %>
+  <tr>
+    <td><%= component.price %></td>
+    <td><%= component.depreciation %></td>
+    <td><%= component.model_no %></td>
+    <td><%= component.eng_model_no %></td>
+    <td><%= component.serial_no %></td>
+    <td><%= component.eng_serial_no %></td>
+    <td><%= component.alternator_sr_no %></td>
+    <td><%= link_to 'Show', component %></td>
+    <td><%= link_to 'Edit', edit_component_path(component) %></td>
+    <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Component', new_component_path %>
