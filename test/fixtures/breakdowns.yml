@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  breakdown_name: MyString
+  breakdown_description: MyText
+  breakdown_no: 1
+  breakdown_cost: 9.99
+  total_parts_cost: 9.99
+  total_labour_cost: 9.99
+
+two:
+  breakdown_name: MyString
+  breakdown_description: MyText
+  breakdown_no: 1
+  breakdown_cost: 9.99
+  total_parts_cost: 9.99
+  total_labour_cost: 9.99

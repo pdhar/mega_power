@@ -69,11 +69,13 @@
 <% end %>
 <br />
 
-<h3>Equipment Report</h3>
+<h3>Equipment Services Report</h3>
 
-<%= content_tag :div, "", id: "test", data: {monthlydata: @monthly_totals} %>
-<%= content_tag :div, "", id: "test", data: {monthlydata: @servicebymonths} %>
 <%= content_tag :div, "", id: "equipmentreport", data: {monthlydata: @monthly_totals} %>
+
+<br />
+<h3>Equipment Breakdown Report</h3> 
+<%= content_tag :div, "", id: "equipmentreport2", data: {monthlydata: @monthly_totals} %>
 
 <br />
 

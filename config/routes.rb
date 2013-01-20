@@ -1,6 +1,12 @@
 MegaPower::Application.routes.draw do
 
 
+  
+  
+  resources :breakdowns
+
+
+  root :to => "static_page#home"
 
   resources :components
 

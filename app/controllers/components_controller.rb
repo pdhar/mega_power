@@ -17,7 +17,7 @@ class ComponentsController < ApplicationController
     @componentmonths = @component.componentmonths
     
     @servicebymonths = @componentmonths.group_by { |t| t.date_month.beginning_of_month }
-    @test = Component.where(:id => params[:id]).joins(:componentmonths => :services).select("componentmonths.date_month as date_month, sum(service_cost) as total_service_cost ").group("componentmonths.date_month")
+    #@test = Component.where(:id => params[:id]).joins(:componentmonths => :services).select("componentmonths.date_month as date_month, sum(service_cost) as total_service_cost ").group("componentmonths.date_month")
     
     
     #@fmltest = @componentmonths.select("sum(total_service_cost) as abc").group_by { |t| t.date_month.beginning_of_month }
@@ -30,16 +30,32 @@ class ComponentsController < ApplicationController
     @servicebymonths.sort.reverse.each do |month, servicebymonths| 
       
       sum_total_services = 0
-      sum_total_parts = 0
-      sum_total_labour = 0
+      sum_total_service_parts = 0
+      sum_total_service_labour = 0
+      sum_total_breaks = 0
+      sum_total_break_parts = 0
+      sum_total_break_labour = 0
       
       for servicebymonth in servicebymonths
         sum_total_services += servicebymonth.total_service_cost
-        sum_total_parts += servicebymonth.total_service_parts
-        sum_total_labour += servicebymonth.total_service_labour
+        sum_total_service_parts += servicebymonth.total_service_parts
+        sum_total_service_labour += servicebymonth.total_service_labour
+        
+        sum_total_breaks += servicebymonth.total_break_cost
+        sum_total_break_parts += servicebymonth.total_break_parts
+        sum_total_break_labour += servicebymonth.total_break_labour
+        
       end
       
-      @monthly_totals.push({month: month, total_service_cost: sum_total_services, total_service_parts: sum_total_parts, total_service_labour: sum_total_labour})
+      @monthly_totals.push({month: month,
+         total_service_cost: sum_total_services,
+         total_service_parts: sum_total_service_parts,
+         total_service_labour: sum_total_service_labour,
+         total_break_cost: sum_total_breaks,
+         total_break_parts: sum_total_break_parts,
+         total_break_labour: sum_total_break_labour
+          
+          })
       
        
     end
@@ -73,11 +89,50 @@ class ComponentsController < ApplicationController
   # POST /components.json
   def create
     @component = Component.new(params[:component])
-
+    
+    
+    
     respond_to do |format|
       if @component.save
         format.html { redirect_to @component, notice: 'Component was successfully created.' }
         format.json { render json: @component, status: :created, location: @component }
+        
+        @component.total_service_cost = 0
+    
+        @component.componentmonths.each do |v|
+          total_service_cost_per_date = 0
+          total_service_parts_per_date = 0
+          total_service_labour_per_date = 0
+          total_break_cost_per_date = 0
+          total_break_parts_per_date = 0
+          total_break_labour_per_date = 0
+          
+          v.services.each do |x|
+            #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
+            @component.total_service_cost += x.service_cost
+            total_service_cost_per_date += x.service_cost
+            total_service_parts_per_date += x.total_parts_cost
+            total_service_labour_per_date += x.total_labour_cost
+          end
+          
+          v.breakdowns.each do |x|
+            #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
+            @component.total_service_cost += x.breakdown_cost
+            total_break_cost_per_date += x.breakdown_cost
+            total_break_parts_per_date += x.total_parts_cost
+            total_break_labour_per_date += x.total_labour_cost
+            #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Total Service Cost: #{total_break_cost_per_date}")
+          end
+          
+          @component.componentmonths.find(v.id).update_attribute(:total_service_parts, total_service_parts_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_service_cost, total_service_cost_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_service_labour, total_service_labour_per_date )
+          
+          @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
+          
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @component.errors, status: :unprocessable_entity }
@@ -92,12 +147,13 @@ class ComponentsController < ApplicationController
     
     @component.total_service_cost = 0
     
-   
-     
     @component.componentmonths.each do |v|
       total_service_cost_per_date = 0
       total_service_parts_per_date = 0
       total_service_labour_per_date = 0
+      total_break_cost_per_date = 0
+      total_break_parts_per_date = 0
+      total_break_labour_per_date = 0
       
       v.services.each do |x|
         #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
@@ -107,14 +163,23 @@ class ComponentsController < ApplicationController
         total_service_labour_per_date += x.total_labour_cost
       end
       
-      #v.total_service_cost = total_service_cost_per_date + 50 
-      #v.total_service_parts =  total_service_cost_per_date
+      v.breakdowns.each do |x|
+        #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
+        @component.total_service_cost += x.breakdown_cost
+        total_break_cost_per_date += x.breakdown_cost
+        total_break_parts_per_date += x.total_parts_cost
+        total_break_labour_per_date += x.total_labour_cost
+        #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Total Service Cost: #{total_break_cost_per_date}")
+      end
+      
       @component.componentmonths.find(v.id).update_attribute(:total_service_parts, total_service_parts_per_date )
       @component.componentmonths.find(v.id).update_attribute(:total_service_cost, total_service_cost_per_date )
       @component.componentmonths.find(v.id).update_attribute(:total_service_labour, total_service_labour_per_date )
-      #Rails.logger.debug("######################Test Part Cost11111111111111: #{total_service_cost_per_date.to_d}")
-      #Rails.logger.debug("######################Test Part Cost11111111111111: #{v.inspect}")
-      # Rails.logger.debug("######################Test Part Cost11332132312311111: #{@component.componentmonths.find(v.id).inspect}")
+      
+      @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
+      @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
+      @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
+      
     end
     #Rails.logger.debug("######################Test Part Cost: #{@component.inspect}")
     

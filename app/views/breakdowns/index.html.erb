@@ -1,0 +1,33 @@
+<h1>Listing breakdowns</h1>
+
+<table class="table table-condensed">
+  <tr>
+    <th>Breakdown name</th>
+    <th>Breakdown description</th>
+    <th>Breakdown no</th>
+    <th>Breakdown cost</th>
+    <th>Total parts cost</th>
+    <th>Total labour cost</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @breakdowns.each do |breakdown| %>
+  <tr>
+    <td><%= breakdown.breakdown_name %></td>
+    <td><%= breakdown.breakdown_description %></td>
+    <td><%= breakdown.breakdown_no %></td>
+    <td><%= breakdown.breakdown_cost %></td>
+    <td><%= breakdown.total_parts_cost %></td>
+    <td><%= breakdown.total_labour_cost %></td>
+    <td><%= link_to 'Show', breakdown %></td>
+    <td><%= link_to 'Edit', edit_breakdown_path(breakdown) %></td>
+    <td><%= link_to 'Destroy', breakdown, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Breakdown', new_breakdown_path %>

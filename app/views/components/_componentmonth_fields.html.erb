@@ -12,7 +12,15 @@
 	<%= f.input :total_service_parts %>
 	<br />
 	<%= f.input :total_service_labour %>
-	
+	<br />
+	<%= f.association :breakdowns, :label_method => :breakdown_name %>
+	<br />
+	<%= f.input :total_break_cost %>
+	<br />
+	<%= f.input :total_break_parts %>
+	<br />
+	<%= f.input :total_break_labour %>
+	<br />
 	<%= link_to_remove_association "remove task", f %>
 
 </div>

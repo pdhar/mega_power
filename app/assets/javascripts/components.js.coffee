@@ -12,4 +12,11 @@ jQuery ->
     xLabels: "month"
     
 
-
+  Morris.Line
+    element: 'equipmentreport2'
+    data: $('#equipmentreport2').data('monthlydata')
+    xkey: 'month'
+    ykeys: ['total_break_cost','total_break_parts','total_break_labour']
+    labels: ['Total Breakdown Cost','Total Breakdown Parts','Total Breakdown Labour']
+    lineColors: ['red','orange','blue']
+    xLabels: "month"

@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120163143) do
+ActiveRecord::Schema.define(:version => 20130120201013) do
+
+  create_table "breakdowns", :force => true do |t|
+    t.string   "breakdown_name"
+    t.text     "breakdown_description"
+    t.integer  "breakdown_no"
+    t.decimal  "breakdown_cost"
+    t.decimal  "total_parts_cost"
+    t.decimal  "total_labour_cost"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "breakdowns_componentmonths", :id => false, :force => true do |t|
+    t.integer "componentmonth_id"
+    t.integer "breakdown_id"
+  end
+
+  create_table "breakdowns_labours", :id => false, :force => true do |t|
+    t.integer "breakdown_id"
+    t.integer "labour_id"
+  end
+
+  create_table "breakdowns_parts", :id => false, :force => true do |t|
+    t.integer "breakdown_id"
+    t.integer "part_id"
+  end
 
   create_table "component_monthlies", :force => true do |t|
     t.integer  "component_id"

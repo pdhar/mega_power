@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Breakdown name:</b>
+  <%= @breakdown.breakdown_name %>
+</p>
+
+<p>
+  <b>Breakdown description:</b>
+  <%= @breakdown.breakdown_description %>
+</p>
+
+<p>
+  <b>Breakdown no:</b>
+  <%= @breakdown.breakdown_no %>
+</p>
+
+<p>
+  <b>Breakdown cost:</b>
+  <%= @breakdown.breakdown_cost %>
+</p>
+
+<p>
+  <b>Total parts cost:</b>
+  <%= @breakdown.total_parts_cost %>
+</p>
+
+<p>
+  <b>Total labour cost:</b>
+  <%= @breakdown.total_labour_cost %>
+</p>
+
+
+<%= link_to 'Edit', edit_breakdown_path(@breakdown) %> |
+<%= link_to 'Back', breakdowns_path %>
