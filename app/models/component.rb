@@ -1,5 +1,5 @@
 class Component < ActiveRecord::Base
-  attr_accessible :alternator_sr_no, :depreciation, :eng_model_no, :eng_serial_no, :model_no, :price, :serial_no, :componentmonths_attributes
+  attr_accessible :alternator_sr_no, :depreciation, :eng_model_no, :eng_serial_no, :model_no, :price, :serial_no, :componentmonths_attributes, :total_service_cost
   
   validates_presence_of :alternator_sr_no, :eng_model_no, :eng_serial_no, :model_no, :serial_no
   validates_uniqueness_of :model_no, :serial_no

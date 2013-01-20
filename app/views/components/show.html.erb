@@ -1,40 +1,82 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Price:</b>
-  <%= @component.price %>
+<p id="notice">
+	<%= notice %>
 </p>
 
 <p>
-  <b>Depreciation:</b>
-  <%= @component.depreciation %>
+	<b>Price:</b>
+	<%= @component.price %>
 </p>
 
 <p>
-  <b>Model no:</b>
-  <%= @component.model_no %>
+	<b>Depreciation:</b>
+	<%= @component.depreciation %>
 </p>
 
 <p>
-  <b>Eng model no:</b>
-  <%= @component.eng_model_no %>
+	<b>Model no:</b>
+	<%= @component.model_no %>
 </p>
 
 <p>
-  <b>Serial no:</b>
-  <%= @component.serial_no %>
+	<b>Eng model no:</b>
+	<%= @component.eng_model_no %>
 </p>
 
 <p>
-  <b>Eng serial no:</b>
-  <%= @component.eng_serial_no %>
+	<b>Serial no:</b>
+	<%= @component.serial_no %>
 </p>
 
 <p>
-  <b>Alternator sr no:</b>
-  <%= @component.alternator_sr_no %>
+	<b>Eng serial no:</b>
+	<%= @component.eng_serial_no %>
 </p>
 
+<p>
+	<b>Alternator sr no:</b>
+	<%= @component.alternator_sr_no %>
+</p>
+
+<p>
+	<b>Running Service Total:</b>
+	<%= @component.total_service_cost %>
+</p>
+
+<br />
+<h3>Service and Breakdown Events</h3>
+<br />
+<% @servicebymonths.sort.reverse.each do |month, servicebymonths| %>
+<h4><%= h month.strftime("%B %Y") %></h4>
+<table class="table table-condensed">
+	<tr>
+		<th>Event Date</th>
+		<th>Event Description</th>
+		<th>Services Total</th>
+		<th>Services Parts</th>
+		<th>Services Labour</th>
+	</tr>
+	<% for servicebymonth in servicebymonths %>
+	<tr>
+		<td><%= servicebymonth.date_month %></td>
+		<td><%= servicebymonth.description %></td>
+		<td><%= servicebymonth.total_service_cost %></td>
+		<td><%= servicebymonth.total_service_parts %></td>
+		<td><%= servicebymonth.total_service_labour %></td>
+	</tr>
+
+	<% end %>
+</table>
+<% end %>
+<br />
+
+<h3>Equipment Report</h3>
+
+<%= content_tag :div, "", id: "test", data: {monthlydata: @monthly_totals} %>
+<%= content_tag :div, "", id: "test", data: {monthlydata: @servicebymonths} %>
+<%= content_tag :div, "", id: "equipmentreport", data: {monthlydata: @monthly_totals} %>
+
+<br />
 
 <%= link_to 'Edit', edit_component_path(@component) %> |
 <%= link_to 'Back', components_path %>
+

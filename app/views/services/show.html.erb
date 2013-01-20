@@ -17,6 +17,18 @@
 	<%= @service.service_no %>
 </p>
 
+
+<p>
+	<b>Total Parts Cost:</b>
+	<%= @service.total_parts_cost %>
+</p>
+
+
+<p>
+	<b>Total Labour Cost:</b>
+	<%= @service.total_labour_cost %>
+</p>
+
 <p>
 	<b>Total Service Cost:</b>
 	<%= @service.service_cost %>
@@ -34,12 +46,32 @@
 		<th>Part description</th>
 	</tr>
 
-	<% @parts.each do |s| %>
+	<% @parts.each do |p| %>
 	<tr>
-		<td><%= s.part_name %></td>
-		<td><%= s.part_no %></td>
-		<td><%= s.part_cost %></td>
-		<td><%= s.part_description %></td>
+		<td><%= p.part_name %></td>
+		<td><%= p.part_no %></td>
+		<td><%= p.part_cost %></td>
+		<td><%= p.part_description %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br />
+<h3>Labours Used for this Service</h3>
+<table class="table table-condensed">
+	<tr>
+		<th>Labour name</th>
+		<th>Labour no</th>
+		<th>Labour Cost</th>
+		<th>Labour description</th>
+	</tr>
+
+	<% @labours.each do |l| %>
+	<tr>
+		<td><%= l.labour_name %></td>
+		<td><%= l.labour_no %></td>
+		<td><%= l.labour_cost_per_hr %></td>
+		<td><%= l.labour_description %></td>
 	</tr>
 	<% end %>
 </table>

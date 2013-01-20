@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116141201) do
+ActiveRecord::Schema.define(:version => 20130120163143) do
 
   create_table "component_monthlies", :force => true do |t|
     t.integer  "component_id"
@@ -24,8 +24,19 @@ ActiveRecord::Schema.define(:version => 20130116141201) do
     t.integer  "component_id"
     t.date     "date_month"
     t.string   "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.decimal  "total_service_cost"
+    t.decimal  "total_service_parts"
+    t.decimal  "total_service_labour"
+    t.decimal  "total_break_cost"
+    t.decimal  "total_break_parts"
+    t.decimal  "total_break_labour"
+  end
+
+  create_table "componentmonths_services", :id => false, :force => true do |t|
+    t.integer "componentmonth_id"
+    t.integer "service_id"
   end
 
   create_table "components", :force => true do |t|
@@ -36,8 +47,9 @@ ActiveRecord::Schema.define(:version => 20130116141201) do
     t.string   "serial_no"
     t.string   "eng_serial_no"
     t.string   "alternator_sr_no"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.decimal  "total_service_cost"
   end
 
   create_table "equipment", :force => true do |t|
@@ -59,6 +71,11 @@ ActiveRecord::Schema.define(:version => 20130116141201) do
     t.decimal  "labour_cost_per_hr"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "labours_services", :id => false, :force => true do |t|
+    t.integer "service_id"
+    t.integer "labour_id"
   end
 
   create_table "parts", :force => true do |t|
@@ -85,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130116141201) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.decimal  "service_cost"
+    t.decimal  "total_parts_cost"
+    t.decimal  "total_labour_cost"
   end
 
 end

@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
+//= require raphael
+//= require morris
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require_tree .

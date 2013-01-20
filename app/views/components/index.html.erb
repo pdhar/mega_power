@@ -9,6 +9,7 @@
     <th>Serial no</th>
     <th>Eng serial no</th>
     <th>Alternator sr no</th>
+    <th>Total Service Cost</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,6 +24,7 @@
     <td><%= component.serial_no %></td>
     <td><%= component.eng_serial_no %></td>
     <td><%= component.alternator_sr_no %></td>
+    <td><%= component.total_service_cost %></td>
     <td><%= link_to 'Show', component %></td>
     <td><%= link_to 'Edit', edit_component_path(component) %></td>
     <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>

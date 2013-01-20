@@ -16,6 +16,7 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     @servicepartsments = @service.servicepartsments
     @parts = @service.parts
+    @labours = @service.labours
     
     respond_to do |format|
       format.html # show.html.erb
@@ -49,10 +50,17 @@ class ServicesController < ApplicationController
     #Rails.logger.debug("My object: #{@service.parts.inspect}")
     #Rails.logger.debug("Part Cost: #{@service.parts.count}")
     @service.service_cost = 0.00
+    @service.total_parts_cost = 0.00
+    @service.total_labour_cost = 0.00
     
     @service.parts.each do |v|
       @service.service_cost += v.part_cost
-      Rails.logger.debug("Test Part Cost: #{v.part_cost}")
+      @service.total_parts_cost += v.part_cost
+    end
+    
+    @service.labours.each do |v|
+      @service.service_cost += v.labour_cost_per_hr
+      @service.total_labour_cost += v.labour_cost_per_hr
     end
     
     respond_to do |format|
@@ -72,10 +80,17 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     
     @service.service_cost = 0.00
+    @service.total_parts_cost = 0.00
+    @service.total_labour_cost = 0.00
     
     @service.parts.each do |v|
       @service.service_cost += v.part_cost
-      Rails.logger.debug("Test Part Cost: #{v.part_cost}")
+      @service.total_parts_cost += v.part_cost
+    end
+    
+    @service.labours.each do |v|
+      @service.service_cost += v.labour_cost_per_hr
+      @service.total_labour_cost += v.labour_cost_per_hr
     end
     
     respond_to do |format|
