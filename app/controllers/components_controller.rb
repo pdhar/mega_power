@@ -40,7 +40,6 @@ class ComponentsController < ApplicationController
         sum_total_services += servicebymonth.total_service_cost
         sum_total_service_parts += servicebymonth.total_service_parts
         sum_total_service_labour += servicebymonth.total_service_labour
-        
         sum_total_breaks += servicebymonth.total_break_cost
         sum_total_break_parts += servicebymonth.total_break_parts
         sum_total_break_labour += servicebymonth.total_break_labour
@@ -94,8 +93,7 @@ class ComponentsController < ApplicationController
     
     respond_to do |format|
       if @component.save
-        format.html { redirect_to @component, notice: 'Component was successfully created.' }
-        format.json { render json: @component, status: :created, location: @component }
+        
         
         @component.total_service_cost = 0
     
@@ -132,6 +130,8 @@ class ComponentsController < ApplicationController
           @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
           
+          format.html { redirect_to @component, notice: 'Component was successfully created.' }
+          format.json { render json: @component, status: :created, location: @component }
         end
       else
         format.html { render action: "new" }
@@ -145,7 +145,12 @@ class ComponentsController < ApplicationController
   def update
     @component = Component.find(params[:id])
     
-    @component.total_service_cost = 0
+    
+    #Rails.logger.debug("######################Test Part Cost: #{@component.inspect}")
+    
+    respond_to do |format|
+      if @component.update_attributes(params[:component])
+        @component.total_service_cost = 0
     
     @component.componentmonths.each do |v|
       total_service_cost_per_date = 0
@@ -181,10 +186,7 @@ class ComponentsController < ApplicationController
       @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
       
     end
-    #Rails.logger.debug("######################Test Part Cost: #{@component.inspect}")
     
-    respond_to do |format|
-      if @component.update_attributes(params[:component])
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }
         format.json { head :no_content }
       else
