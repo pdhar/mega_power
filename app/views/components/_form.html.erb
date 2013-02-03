@@ -9,15 +9,16 @@
 	<%= f.input :serial_no %>
 	<%= f.input :eng_serial_no %>
 	<%= f.input :alternator_sr_no %>
-
+	
 	<div id="componentmonths">
-		<%= f.simple_fields_for :componentmonths do |builder| %>
-
+		
+		<%= f.simple_fields_for :componentmonths do |builder|%>
+		
 		<%= render 'componentmonth_fields' , f: builder%>
-
+		
 		<% end %>
-		<div class="links">
-			<%= link_to_add_association "Add Month", f, :componentmonths %>
+		<div class="links" >
+			<%= link_to_add_association "Add Month", f, :componentmonths , :class => "btn btn-normal btn-primary" %>
 		</div>
 	</div>
 </div>
@@ -26,4 +27,5 @@
 	<%= f.button :submit %>
 </div>
 <% end %>
+
 

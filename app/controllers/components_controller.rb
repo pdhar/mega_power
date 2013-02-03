@@ -69,7 +69,7 @@ class ComponentsController < ApplicationController
   # GET /components/new.json
   def new
     @component = Component.new
-    
+    @index = 0
     #@component.componentmonths.build
     #2.times { @component.componentmonths.build }
     
@@ -82,6 +82,7 @@ class ComponentsController < ApplicationController
   # GET /components/1/edit
   def edit
     @component = Component.find(params[:id])
+    @index = 0
   end
 
   # POST /components

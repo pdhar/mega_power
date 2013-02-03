@@ -2,6 +2,8 @@
 	<li class="nav-header">
 		Options
 	</li>
+	<li ><%= link_to "Customers", components_path %></li>
+	<li class="divider"></li>
 	<li class="<%= 'active' if controller?("components") %>"><%= link_to "Equipment", components_path %></li>
 	<li class="divider"></li>
 	<li class="<%= 'active' if controller?("services") %>"><%= link_to "Services", services_path %></li>

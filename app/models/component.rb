@@ -12,7 +12,7 @@ class Component < ActiveRecord::Base
             :numericality => true,
             :format => { :with => /^\d{1,2}(\.\d{0,2})?$/ }  
       
-  has_many :componentmonths, :dependent => :destroy    
+  has_many :componentmonths, :dependent => :destroy , :order => "date_month"   
   accepts_nested_attributes_for :componentmonths, allow_destroy: true  
               
 end

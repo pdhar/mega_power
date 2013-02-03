@@ -23,6 +23,7 @@ end
 gem 'cocoon'
 gem 'json'
 gem 'jquery-rails'
+gem 'jquery-ui-rails' 
 gem 'bootstrap-sass', '2.1'
 gem 'simple_form'
 gem 'client_side_validations'
