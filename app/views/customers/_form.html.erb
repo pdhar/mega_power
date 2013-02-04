@@ -1,0 +1,30 @@
+<%= simple_form_for(@customer, :validate => true) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :contact1 %>
+    <%= f.input :contact2 %>
+    <%= f.input :contact3 %>
+    <%= f.input :telephone %>
+    <%= f.input :fax %>
+    <%= f.input :email %>
+    <%= f.input :address , :input_html => { :cols => 50, :rows => 3 }%>
+    
+    <div id="rentals">
+		
+		<%= f.simple_fields_for :rentals do |builder|%>
+		
+		<%= render 'rental_fields' , f: builder %>
+		
+		<% end %>
+		<div class="links" >
+			<%= link_to_add_association "Add Rental", f, :rentals , :class => "btn " %>
+		</div>
+	</div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

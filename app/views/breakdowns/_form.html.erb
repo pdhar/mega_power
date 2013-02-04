@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :breakdown_name %>
-    <%= f.input :breakdown_description %>
+    <%= f.input :breakdown_description ,:label => "Description", :input_html => { :cols => 50, :rows => 3 }%>
     <%= f.input :breakdown_no %>
     <%= f.input :breakdown_cost %>
     <%= f.input :total_parts_cost %>

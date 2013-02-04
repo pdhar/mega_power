@@ -38,9 +38,37 @@
 </p>
 
 <p>
+	<b>Commission Date:</b>
+	<%= @component.commision_date.to_formatted_s(:long) %>
+</p>
+
+
+<p>
+	<b>Purchase Date:</b>
+	<%= @component.purchase_date.to_formatted_s(:long) %>
+</p>
+
+<p>
+	<b>Warranty End Date:</b>
+	<%= (@component.commision_date += 1.year).to_formatted_s(:long) %>
+</p>
+
+<p>
+	<b>Depreciated Cost:</b>
+	<%= @component.depreciated_cost %>
+</p>
+
+<p>
+	<b>Rating:</b>
+	<%= @component.rating %>
+</p>
+<p>
 	<b>Running Service Total:</b>
 	<%= @component.total_service_cost %>
 </p>
+
+
+
 
 <br />
 <h3>Service and Breakdown Events</h3>
@@ -50,18 +78,28 @@
 <table class="table table-condensed">
 	<tr>
 		<th>Event Date</th>
+		<th>Site Name</th>
 		<th>Event Description</th>
-		<th>Services Total</th>
-		<th>Services Parts</th>
-		<th>Services Labour</th>
+		<th>Services</th>
+		<th>Breakdowns</th>
+		
 	</tr>
 	<% for servicebymonth in servicebymonths %>
 	<tr>
 		<td><%= servicebymonth.date_month %></td>
+		<td><%= servicebymonth.site_name %></td>
 		<td><%= servicebymonth.description %></td>
-		<td><%= servicebymonth.total_service_cost %></td>
-		<td><%= servicebymonth.total_service_parts %></td>
-		<td><%= servicebymonth.total_service_labour %></td>
+		<td><strong>Total:</strong>&nbsp;<%= servicebymonth.total_service_cost %>
+			<br /><strong>Parts:</strong>&nbsp;<%= servicebymonth.total_service_parts %>
+			<br /><strong>Labour:</strong>&nbsp;<%= servicebymonth.total_service_labour %>
+		</td>
+		
+		
+		<td><strong>Total:</strong>&nbsp;<%= servicebymonth.total_break_cost %>
+			<br /><strong>Parts:</strong>&nbsp;<%= servicebymonth.total_break_parts %>
+			<br /><strong>Labour:</strong>&nbsp;<%= servicebymonth.total_break_labour %>
+		</td>
+		
 	</tr>
 
 	<% end %>
@@ -79,6 +117,10 @@
 
 <br />
 
+<h3>Equipment Working Hours</h3> 
+<%= content_tag :div, "", id: "equipmentreport3", data: {monthlydata: @monthly_totals} %>
+
+<br />
 <%= link_to 'Edit', edit_component_path(@component) %> |
 <%= link_to 'Back', components_path %>
 

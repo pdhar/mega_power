@@ -1,0 +1,20 @@
+
+<div class="nested-fields" >
+	<br />
+	<%= f.input :start , :as => :datepicker %>
+	<%= f.input :end , :as => :datepicker %>
+	<%= f.input :price %>
+	<%= f.association :components, :label_method => :model_no %>
+	
+	<%= link_to_remove_association "Remove Item", f, :class => "btn btn-mini", :style => "text-align: left" %>
+	<br /><br />
+</div>
+<script>
+	 $("input.datepicker").each(function(i) {
+      return $(this).datepicker({
+        altFormat: "yy-mm-dd",
+        dateFormat: "mm/dd/yy",
+        altField: $(this).next()
+      });
+    });
+</script>

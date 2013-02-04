@@ -3,6 +3,9 @@ MegaPower::Application.routes.draw do
 
   
   
+  resources :customers
+
+
   resources :breakdowns
 
 

@@ -35,6 +35,8 @@ class ComponentsController < ApplicationController
       sum_total_breaks = 0
       sum_total_break_parts = 0
       sum_total_break_labour = 0
+      sum_total_offhire_hrs = 0
+      sum_total_total_hrs = 0
       
       for servicebymonth in servicebymonths
         sum_total_services += servicebymonth.total_service_cost
@@ -44,6 +46,11 @@ class ComponentsController < ApplicationController
         sum_total_break_parts += servicebymonth.total_break_parts
         sum_total_break_labour += servicebymonth.total_break_labour
         
+        sum_total_total_hrs += servicebymonth.total_hrs
+        if servicebymonth.offhire_hrs > sum_total_offhire_hrs
+          sum_total_offhire_hrs = servicebymonth.offhire_hrs  
+        end 
+        
       end
       
       @monthly_totals.push({month: month,
@@ -52,8 +59,9 @@ class ComponentsController < ApplicationController
          total_service_labour: sum_total_service_labour,
          total_break_cost: sum_total_breaks,
          total_break_parts: sum_total_break_parts,
-         total_break_labour: sum_total_break_labour
-          
+         total_break_labour: sum_total_break_labour,
+         total_offhire_hrs: sum_total_offhire_hrs,
+         total_total_hrs: sum_total_total_hrs 
           })
       
        
@@ -105,6 +113,8 @@ class ComponentsController < ApplicationController
           total_break_cost_per_date = 0
           total_break_parts_per_date = 0
           total_break_labour_per_date = 0
+          total_hrs = v.offhire_hrs - v.onhire_hrs  
+          
           
           v.services.each do |x|
             #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
@@ -130,6 +140,7 @@ class ComponentsController < ApplicationController
           @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_hrs, total_hrs )
           
           format.html { redirect_to @component, notice: 'Component was successfully created.' }
           format.json { render json: @component, status: :created, location: @component }
@@ -145,7 +156,7 @@ class ComponentsController < ApplicationController
   # PUT /components/1.json
   def update
     @component = Component.find(params[:id])
-    
+    @index = 0
     
     #Rails.logger.debug("######################Test Part Cost: #{@component.inspect}")
     
@@ -160,6 +171,7 @@ class ComponentsController < ApplicationController
       total_break_cost_per_date = 0
       total_break_parts_per_date = 0
       total_break_labour_per_date = 0
+      total_hrs = v.offhire_hrs - v.onhire_hrs  
       
       v.services.each do |x|
         #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
@@ -185,7 +197,7 @@ class ComponentsController < ApplicationController
       @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
       @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
       @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
-      
+      @component.componentmonths.find(v.id).update_attribute(:total_hrs, total_hrs )
     end
     
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }

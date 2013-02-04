@@ -20,3 +20,12 @@ jQuery ->
     labels: ['Total Breakdown Cost','Total Breakdown Parts','Total Breakdown Labour']
     lineColors: ['red','orange','blue']
     xLabels: "month"
+
+  Morris.Line
+    element: 'equipmentreport3'
+    data: $('#equipmentreport3').data('monthlydata')
+    xkey: 'month'
+    ykeys: ['total_offhire_hrs','total_total_hrs']
+    labels: ['Working hrs Running Total','Working hrs monthly']
+    lineColors: ['brown','purple']
+    xLabels: "month"  

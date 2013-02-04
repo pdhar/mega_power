@@ -9,16 +9,21 @@
 	<%= f.input :serial_no %>
 	<%= f.input :eng_serial_no %>
 	<%= f.input :alternator_sr_no %>
+	<%= f.input :commision_date , :as => :datepicker%>
+	
+	<%= f.input :purchase_date , :as => :datepicker%>
+	<%= f.input :depreciated_cost %>
+	<%= f.input :rating %>
 	
 	<div id="componentmonths">
 		
 		<%= f.simple_fields_for :componentmonths do |builder|%>
 		
-		<%= render 'componentmonth_fields' , f: builder%>
+		<%= render 'componentmonth_fields' , f: builder %>
 		
 		<% end %>
 		<div class="links" >
-			<%= link_to_add_association "Add Month", f, :componentmonths , :class => "btn btn-normal btn-primary" %>
+			<%= link_to_add_association "Add Event", f, :componentmonths , :class => "btn " %>
 		</div>
 	</div>
 </div>

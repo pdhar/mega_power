@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120201013) do
+ActiveRecord::Schema.define(:version => 20130204074036) do
 
   create_table "breakdowns", :force => true do |t|
     t.string   "breakdown_name"
@@ -50,14 +50,18 @@ ActiveRecord::Schema.define(:version => 20130120201013) do
     t.integer  "component_id"
     t.date     "date_month"
     t.string   "description"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.decimal  "total_service_cost"
     t.decimal  "total_service_parts"
     t.decimal  "total_service_labour"
     t.decimal  "total_break_cost"
     t.decimal  "total_break_parts"
     t.decimal  "total_break_labour"
+    t.string   "site_name"
+    t.decimal  "onhire_hrs",           :default => 0.0, :null => false
+    t.decimal  "offhire_hrs",          :default => 0.0, :null => false
+    t.decimal  "total_hrs",            :default => 0.0, :null => false
   end
 
   create_table "componentmonths_services", :id => false, :force => true do |t|
@@ -73,9 +77,31 @@ ActiveRecord::Schema.define(:version => 20130120201013) do
     t.string   "serial_no"
     t.string   "eng_serial_no"
     t.string   "alternator_sr_no"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.decimal  "total_service_cost"
+    t.date     "commision_date"
+    t.date     "purchase_date"
+    t.decimal  "depreciated_cost",   :default => 0.0, :null => false
+    t.string   "rating"
+  end
+
+  create_table "components_rentalitems", :id => false, :force => true do |t|
+    t.integer "component_id"
+    t.integer "rentalitem_id"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.string   "contact1"
+    t.string   "contact2"
+    t.string   "contact3"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "email"
+    t.text     "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "equipment", :force => true do |t|
@@ -111,6 +137,25 @@ ActiveRecord::Schema.define(:version => 20130120201013) do
     t.decimal  "part_cost"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "rentalitems", :force => true do |t|
+    t.date     "start"
+    t.date     "end"
+    t.decimal  "price"
+    t.integer  "rental_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "rentals", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "total_rental_price"
+    t.text     "address"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "servicepartsments", :force => true do |t|

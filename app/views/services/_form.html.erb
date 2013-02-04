@@ -3,9 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :service_name %>
-    <%= f.input :service_description %>
+    <%= f.input :service_description, :input_html => { :cols => 50, :rows => 3 } %>
     <%= f.input :service_no %>
-    
+	
     <%= f.association :parts, :label_method => :part_name %>
     
     <%= f.association :labours, :label_method => :labour_name %>

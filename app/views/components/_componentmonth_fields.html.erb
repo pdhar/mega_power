@@ -3,24 +3,30 @@
 	<h4 >
 	<table class="table table-condensed" style="background-color: black; color: white; ">
 		<tr>
-			<th>(Site <%= @index += 1%>) <%= f.input_field :date_month , :as => :display %> <%= f.input_field :description , :as => :display %></th>
+			<th>(Site <%= @index += 1%>) <%= f.input_field :date_month , :as => :display %> <%= f.input_field :site_name , :as => :display %></th>
 
 		</tr>
 	</table></h4>
 
 	<div id="site_container_<%= @index %>" style='display: none;'>
-
-		<%= f.input :date_month %>
-		<%= f.input :description %>
+		
+		
+		
+		<%= f.input :site_name %>
+		<%= f.input :date_month , :as => :datepicker%>
+		<%= f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
 		<%= f.association :services, :label_method => :service_name %>
 
 		<%= f.association :breakdowns, :label_method => :breakdown_name %>
+		<%= f.input :onhire_hrs %>
+		<%= f.input :offhire_hrs %>
+		
 	</div>
-	<a id="show_site_container_<%= @index %>" class="btn btn-small" href='javascript:;'>Show Month</a>
-	<%= link_to_remove_association "Remove Month", f, :class => "btn btn-small", :style => "text-align: left" %>
-
+	<a id="show_site_container_<%= @index %>" class="button_toggle btn btn-small" href='javascript:;'>Show Event</a>
+	<%= link_to_remove_association "Remove Event", f, :class => "btn btn-small", :style => "text-align: left" %>
+	<hr />
 </div>
-<hr />
+
 <script>
 $('#show_site_container_<%= @index %>').click(function(e) {
 	//Close all <div> but the <div> right after the clicked <a>
@@ -29,5 +35,12 @@ $('#show_site_container_<%= @index %>').click(function(e) {
 	//$(e.target).next('div').slideToggle();
 	$('#site_container_<%= @index %>').slideToggle();
 
-	});
+	});		
+$("input.datepicker").each(function(i) {
+  return $(this).datepicker({
+    altFormat: "yy-mm-dd",
+    dateFormat: "mm/dd/yy",
+    altField: $(this).next()
+  });
+});
 </script>

@@ -1,0 +1,45 @@
+<br />
+<div class="nested-fields">
+	<h4 >
+	<table class="table table-condensed" style="background-color: black; color: white; ">
+		<tr>
+			<th>(Rental <%= @index += 1%>) <%= f.input_field :name , :as => :display %> </th>
+
+		</tr>
+	</table></h4>
+
+	<div id="site_container_<%= @index %>" style='display: none;'>
+		
+		<%= f.input :name %>
+		<%= f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
+		<%= f.input :address, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
+		
+		<div id="componentmonths">
+			<%= f.simple_fields_for :rentalitems do |builder|%>
+			
+				<%= render 'rentalitem_fields' , f: builder %>
+			
+			<% end %>
+			
+			<div class="links" >
+				<%= link_to_add_association "Add Item", f, :rentalitems , :class => "btn btn-mini" %>
+			</div>
+		</div>
+		<hr />
+	</div>
+	
+	<a id="show_site_container_<%= @index %>" class="button_toggle btn btn-small" href='javascript:;'>Show Rental</a>
+	<%= link_to_remove_association "Remove Rental", f, :class => "btn btn-small", :style => "text-align: left" %>
+	<hr />
+</div>
+
+<script>
+$('#show_site_container_<%= @index %>').click(function(e) {
+	//Close all <div> but the <div> right after the clicked <a>
+	//$(e.target).next('div').siblings('div').slideUp();
+	//Toggle open/close on the <div> after the <a>, opening it if not open.
+	//$(e.target).next('div').slideToggle();
+	$('#site_container_<%= @index %>').slideToggle();
+
+	});		
+</script>

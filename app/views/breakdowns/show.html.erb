@@ -30,6 +30,49 @@
   <%= @breakdown.total_labour_cost %>
 </p>
 
+<br />
+
+<h3>Parts Used for this Breakdown</h3>
+
+<table class="table table-condensed">
+	<tr>
+		<th>Part name</th>
+		<th>Part no</th>
+		<th>Part Cost</th>
+		<th>Part description</th>
+	</tr>
+
+	<% @parts.each do |p| %>
+	<tr>
+		<td><%= p.part_name %></td>
+		<td><%= p.part_no %></td>
+		<td><%= p.part_cost %></td>
+		<td><%= p.part_description %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br />
+<h3>Labours Used for this Breakdown</h3>
+<table class="table table-condensed">
+	<tr>
+		<th>Labour name</th>
+		<th>Labour no</th>
+		<th>Labour Cost</th>
+		<th>Labour description</th>
+	</tr>
+
+	<% @labours.each do |l| %>
+	<tr>
+		<td><%= l.labour_name %></td>
+		<td><%= l.labour_no %></td>
+		<td><%= l.labour_cost_per_hr %></td>
+		<td><%= l.labour_description %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br />
 
 <%= link_to 'Edit', edit_breakdown_path(@breakdown) %> |
 <%= link_to 'Back', breakdowns_path %>

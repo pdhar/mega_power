@@ -18,6 +18,7 @@
 //= require morris
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require temp.js
+//= require temp
 //= require components
+
 

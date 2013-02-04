@@ -14,7 +14,10 @@ class BreakdownsController < ApplicationController
   # GET /breakdowns/1.json
   def show
     @breakdown = Breakdown.find(params[:id])
-
+    
+    @parts = @breakdown.parts
+    @labours = @breakdown.labours
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @breakdown }
