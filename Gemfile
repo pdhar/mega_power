@@ -28,7 +28,7 @@ gem 'bootstrap-sass', '2.1'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
-
+gem 'devise'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,4 +1,5 @@
 class PartsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /parts
   # GET /parts.json
   def index

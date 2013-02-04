@@ -1,4 +1,5 @@
 class ComponentsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /components
   # GET /components.json
   def index

@@ -1,14 +1,41 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "Mega Power", '#', id: "logo" %>
-      <!--nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home",    '#' %></li>
-          <li><%= link_to "Help",    '#' %></li>
-          <li><%= link_to "Sign in", '#' %></li>
-        </ul>
-      </nav-->
-    </div>
-  </div>
+	<div class="navbar-inner">
+		<div class="container">
+			<%= link_to "Mega Power", root_path, id: "logo" %>
+			<!--nav>
+			<ul class="nav pull-right">
+			<li><%= link_to "Home",    '#' %></li>
+			<li><%= link_to "Help",    '#' %></li>
+			<li><%= link_to "Sign in", '#' %></li>
+			</ul>
+			</nav-->
+			<nav>
+				<% if user_signed_in? %>
+				<ul class="nav pull-right">
+					<li>
+						<%= link_to 'Logged in as ' + current_user.email, '#' %>
+					</li>
+					<li>
+						<%= link_to 'Edit profile', edit_user_registration_path %>
+					</li>
+					<li>
+						<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+					</li>
+				</ul>
+
+				<% else %>
+				<ul class="nav pull-right">
+
+					<li>
+						<%= link_to "Sign up", new_user_registration_path %>
+					</li>
+					<li>
+						<%= link_to "Login", new_user_session_path %>
+					</li>
+				</ul>
+
+				<% end %>
+			</nav>
+		</div>
+	</div>
 </header>

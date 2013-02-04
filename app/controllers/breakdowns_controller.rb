@@ -1,4 +1,5 @@
 class BreakdownsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /breakdowns
   # GET /breakdowns.json
   def index

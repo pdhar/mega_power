@@ -3,6 +3,8 @@ MegaPower::Application.routes.draw do
 
   
   
+  devise_for :users
+
   resources :customers
 
 

@@ -1,5 +1,8 @@
 <div class="center hero-unit">
   <h1>Welcome to the Mega Power App</h1>
-
-  
+  <% if user_signed_in? %>
+  &nbsp;
+  <% else %>
+	<%= link_to "Sign In", new_user_session_path, class: "btn btn-large" %>
+  <% end %>
 </div>

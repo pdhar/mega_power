@@ -1,4 +1,5 @@
 class LaboursController < ApplicationController
+  before_filter :authenticate_user!
   # GET /labours
   # GET /labours.json
   def index
