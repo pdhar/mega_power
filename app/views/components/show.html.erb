@@ -74,6 +74,7 @@
 	<tr>
 		<th>Event Date</th>
 		<th>Site Name</th>
+		<th>Site No.</th>
 		<th>Event Description</th>
 		<th>Services</th>
 		<th>Breakdowns</th>
@@ -83,7 +84,9 @@
 	<tr>
 		<td><%= servicebymonth.date_month %></td>
 		<td><%= servicebymonth.site_name %></td>
+		<td><%= servicebymonth.siteno %></td>
 		<td><%= servicebymonth.description %></td>
+		
 		<td><strong>Total:</strong>&nbsp;<%= servicebymonth.total_service_cost %>
 			<br /><strong>Parts:</strong>&nbsp;<%= servicebymonth.total_service_parts %>
 			<br /><strong>Labour:</strong>&nbsp;<%= servicebymonth.total_service_labour %>

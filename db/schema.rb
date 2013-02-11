@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211073808) do
+ActiveRecord::Schema.define(:version => 20130211082915) do
 
   create_table "breakdowns", :force => true do |t|
     t.string   "breakdown_name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130211073808) do
     t.decimal  "onhire_hrs",           :default => 0.0, :null => false
     t.decimal  "offhire_hrs",          :default => 0.0, :null => false
     t.decimal  "total_hrs",            :default => 0.0, :null => false
+    t.string   "siteno"
   end
 
   create_table "componentmonths_services", :id => false, :force => true do |t|

@@ -13,6 +13,7 @@
 		
 		
 		<%= f.input :site_name %>
+		<%= f.input :siteno , :label => 'Site No.'%>
 		<%= f.input :date_month , :as => :datepicker%>
 		<%= f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
 		<%= f.association :services, :label_method => :service_name %>

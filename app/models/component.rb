@@ -3,7 +3,7 @@ class Component < ActiveRecord::Base
   
   attr_accessible :alternator_sr_no, :depreciation, :eng_model_no, :eng_serial_no, 
     :model_no, :price, :serial_no, :componentmonths_attributes, :total_service_cost,
-    :site_name, :commision_date, :purchase_date, :depreciated_cost, :rating, :mpgno
+    :site_name, :commision_date, :purchase_date, :depreciated_cost, :rating, :mpgno, :siteno
   
   validates_presence_of :mpgno, :eng_model_no, :eng_serial_no, :model_no, :serial_no,
   :commision_date, :purchase_date, :depreciated_cost, :rating

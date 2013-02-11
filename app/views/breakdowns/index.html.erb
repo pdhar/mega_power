@@ -14,7 +14,7 @@
   </tr>
 
 <% @breakdowns.each do |breakdown| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= breakdown.breakdown_name %></td>
     <td><%= breakdown.breakdown_description %></td>
     <td><%= breakdown.breakdown_no %></td>
