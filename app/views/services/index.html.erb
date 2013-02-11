@@ -14,7 +14,7 @@
   </tr>
 
 <% @services.each do |service| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= service.service_name %></td>
     <td><%= service.service_description %></td>
     <td><%= service.service_no %></td>

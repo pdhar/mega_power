@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204082718) do
+ActiveRecord::Schema.define(:version => 20130211073808) do
 
   create_table "breakdowns", :force => true do |t|
     t.string   "breakdown_name"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.date     "purchase_date"
     t.decimal  "depreciated_cost",   :default => 0.0, :null => false
     t.string   "rating"
+    t.string   "mpgno"
   end
 
   create_table "components_rentalitems", :id => false, :force => true do |t|

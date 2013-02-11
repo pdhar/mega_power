@@ -12,7 +12,7 @@
   </tr>
 
 <% @labours.each do |labour| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= labour.labour_no %></td>
     <td><%= labour.labour_name %></td>
     <td><%= labour.labour_description %></td>

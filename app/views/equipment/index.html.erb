@@ -15,7 +15,7 @@
   </tr>
 
 <% @equipment.each do |equipment| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= equipment.price %></td>
     <td><%= equipment.depreciation %></td>
     <td><%= equipment.model_no %></td>

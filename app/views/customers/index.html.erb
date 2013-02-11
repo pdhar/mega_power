@@ -16,7 +16,7 @@
   </tr>
 
 <% @customers.each do |customer| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= customer.name %></td>
     <td><%= customer.contact1 %></td>
     <td><%= customer.contact2 %></td>

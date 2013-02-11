@@ -12,7 +12,7 @@
   </tr>
 
 <% @parts.each do |part| %>
-  <tr>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= part.part_name %></td>
     <td><%= part.part_no %></td>
     <td><%= part.part_cost %></td>

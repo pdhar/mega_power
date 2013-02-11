@@ -89,3 +89,7 @@ $grayMediumLight: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
+
+
+table tr.evenrow {background-color: white; }
+table tr.oddrow {background-color: rgb(238, 238, 238); }
