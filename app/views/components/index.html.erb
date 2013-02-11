@@ -3,7 +3,7 @@
 <table class="table table-condensed">
   <tr>
     
-    <th>Depreciation</th>
+    
     <th>MPG no</th>
     <th>Model no</th>
     <th>Eng model no</th>
@@ -14,7 +14,7 @@
     <th>Commission</th>
     <th>Purchase</th>
     <th>Warranty End</th>
-    
+    <th>Depreciation</th>
     
     <th></th>
     <th></th>
@@ -23,7 +23,7 @@
 <% @components.each do |component| %>
   <tr class="<%= cycle('oddrow', 'evenrow') %>">
     
-    <td><%= component.depreciation %></td>
+    
     <td><%= component.mpgno %></td>
     <td><%= component.model_no %></td>
     <td><%= component.eng_model_no %></td>
@@ -35,7 +35,7 @@
     <td><%= component.commision_date.to_formatted_s(:long) %></td>
     <td><%= component.purchase_date.to_formatted_s(:long) %></td>
     <td><%= (component.commision_date += 1.year).to_formatted_s(:long) %></td>
-    
+    <td><%= component.depreciation %></td>
     <td><%= link_to 'Show', component %></td>
     <td><%= link_to 'Edit', edit_component_path(component) %></td>
     <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
