@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.string   "breakdown_name"
     t.text     "breakdown_description"
     t.integer  "breakdown_no"
-    t.decimal  "breakdown_cost"
-    t.decimal  "total_parts_cost"
-    t.decimal  "total_labour_cost"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.decimal  "breakdown_cost",        :default => 0.0, :null => false
+    t.decimal  "total_parts_cost",      :default => 0.0, :null => false
+    t.decimal  "total_labour_cost",     :default => 0.0, :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "breakdowns_componentmonths", :id => false, :force => true do |t|
@@ -39,25 +39,18 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.integer "part_id"
   end
 
-  create_table "component_monthlies", :force => true do |t|
-    t.integer  "component_id"
-    t.date     "month"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "componentmonths", :force => true do |t|
     t.integer  "component_id"
     t.date     "date_month"
     t.string   "description"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
-    t.decimal  "total_service_cost"
-    t.decimal  "total_service_parts"
-    t.decimal  "total_service_labour"
-    t.decimal  "total_break_cost"
-    t.decimal  "total_break_parts"
-    t.decimal  "total_break_labour"
+    t.decimal  "total_service_cost",   :default => 0.0, :null => false
+    t.decimal  "total_service_parts",  :default => 0.0, :null => false
+    t.decimal  "total_service_labour", :default => 0.0, :null => false
+    t.decimal  "total_break_cost",     :default => 0.0, :null => false
+    t.decimal  "total_break_parts",    :default => 0.0, :null => false
+    t.decimal  "total_break_labour",   :default => 0.0, :null => false
     t.string   "site_name"
     t.decimal  "onhire_hrs",           :default => 0.0, :null => false
     t.decimal  "offhire_hrs",          :default => 0.0, :null => false
@@ -79,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.string   "alternator_sr_no"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
-    t.decimal  "total_service_cost"
+    t.decimal  "total_service_cost", :default => 0.0, :null => false
     t.date     "commision_date"
     t.date     "purchase_date"
     t.decimal  "depreciated_cost",   :default => 0.0, :null => false
@@ -102,18 +95,6 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.text     "address"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "equipment", :force => true do |t|
-    t.decimal  "price"
-    t.decimal  "depreciation"
-    t.string   "model_no"
-    t.string   "eng_model_no"
-    t.string   "serial_no"
-    t.string   "eng_serial_no"
-    t.string   "alternator_sr_no"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
   end
 
   create_table "labours", :force => true do |t|
@@ -170,11 +151,11 @@ ActiveRecord::Schema.define(:version => 20130204082718) do
     t.string   "service_name"
     t.text     "service_description"
     t.string   "service_no"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.decimal  "service_cost"
-    t.decimal  "total_parts_cost"
-    t.decimal  "total_labour_cost"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.decimal  "service_cost",        :default => 0.0, :null => false
+    t.decimal  "total_parts_cost",    :default => 0.0, :null => false
+    t.decimal  "total_labour_cost",   :default => 0.0, :null => false
   end
 
   create_table "users", :force => true do |t|

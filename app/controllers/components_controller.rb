@@ -14,6 +14,7 @@ class ComponentsController < ApplicationController
   # GET /components/1
   # GET /components/1.json
   def show
+    @index = 0
     @component = Component.find(params[:id])
     @componentmonths = @component.componentmonths
     
@@ -98,12 +99,11 @@ class ComponentsController < ApplicationController
   # POST /components.json
   def create
     @component = Component.new(params[:component])
-    
+    @index = 0
     
     
     respond_to do |format|
       if @component.save
-        
         
         @component.total_service_cost = 0
     
@@ -137,16 +137,18 @@ class ComponentsController < ApplicationController
           @component.componentmonths.find(v.id).update_attribute(:total_service_parts, total_service_parts_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_service_cost, total_service_cost_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_service_labour, total_service_labour_per_date )
-          
           @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
           @component.componentmonths.find(v.id).update_attribute(:total_hrs, total_hrs )
           
-          format.html { redirect_to @component, notice: 'Component was successfully created.' }
-          format.json { render json: @component, status: :created, location: @component }
+          #format.js   { redirect_to @component, notice: 'Component was successfully created.' } 
         end
+        
+        format.html { redirect_to @component, notice: 'Component was successfully created.' }
+        format.json { render json: @component, status: :created, location: @component }
       else
+        
         format.html { render action: "new" }
         format.json { render json: @component.errors, status: :unprocessable_entity }
       end
