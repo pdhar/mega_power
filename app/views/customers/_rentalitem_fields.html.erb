@@ -4,7 +4,7 @@
 	<%= f.input :start , :as => :datepicker %>
 	<%= f.input :end , :as => :datepicker %>
 	<%= f.input :price %>
-	<%= f.association :components, :label_method => :model_no %>
+	<%= f.association :components, :label_method => :mpgno %>
 	
 	<%= link_to_remove_association "Remove Item", f, :class => "btn btn-mini", :style => "text-align: left" %>
 	<br /><br />

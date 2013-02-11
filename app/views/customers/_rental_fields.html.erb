@@ -10,9 +10,10 @@
 
 	<div id="site_container_<%= @index %>" style='display: none;'>
 		
-		<%= f.input :name %>
+		<%= f.input :name, :label => 'Site Name' %>
+		<%= f.input :siteno , :label => 'Site No.'%>
 		<%= f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
-		<%= f.input :address, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
+		<%= f.input :address, :label => 'Location', :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
 		
 		<div id="componentmonths">
 			<%= f.simple_fields_for :rentalitems do |builder|%>

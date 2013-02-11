@@ -1,6 +1,6 @@
 class Rentalitem < ActiveRecord::Base
   attr_accessible :end, :price, :rental_id, :start, :component_ids
-  validates_presence_of :end, :start 
+  validates_presence_of  :start 
   
   validates :price, :presence => true,
             :numericality => true,
