@@ -20,5 +20,6 @@
 //= require rails.validations.simple_form
 //= require temp
 //= require components
+//= require dataTables/jquery.dataTables
 
 

@@ -1,46 +1,46 @@
 <h1>Listing Equipment</h1>
 
-<table class="table table-condensed">
-  <tr>
-    
-    
-    <th>MPG no</th>
-    <th>Model no</th>
-    <th>Eng model no</th>
-    <th>Serial no</th>
-    <th>Eng serial no</th>
-    <th>Price</th>
-    <th>Total Service Cost</th>
-    <th>Commission</th>
-    <th>Purchase</th>
-    <th>Warranty End</th>
-    <th>Depreciation</th>
-    
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-<% @components.each do |component| %>
-  <tr class="<%= cycle('oddrow', 'evenrow') %>">
-    
-    
-    <td><%= component.mpgno %></td>
-    <td><%= component.model_no %></td>
-    <td><%= component.eng_model_no %></td>
-    <td><%= component.serial_no %></td>
-    <td><%= component.eng_serial_no %></td>
-    <td><%= component.price %></td>
-    <td><%= component.total_service_cost %></td>
-    
-    <td><%= component.commision_date.to_formatted_s(:long) %></td>
-    <td><%= component.purchase_date.to_formatted_s(:long) %></td>
-    <td><%= (component.commision_date += 1.year).to_formatted_s(:long) %></td>
-    <td><%= component.depreciation %></td>
-    <td><%= link_to 'Show', component %></td>
-    <td><%= link_to 'Edit', edit_component_path(component) %></td>
-    <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<table id="equipments" class="display table table-condensed">
+	<thead>
+	  <tr>
+	    
+	    
+	    <th>MPG no</th>
+	    <th>Model</th>
+	    <th>Eng model</th>
+	    <th>Sr no</th>
+	    <th>Eng sr no</th>
+	    <th>Price</th>
+	    <th>Commission</th>
+	    <th>Purchase</th>
+	    <th>Warr. End</th>
+	    <th>Deprec.</th>
+	    
+	    <th></th>
+	    
+	  </tr>
+	</thead>
+	<tbody>
+		<% @components.each do |component| %>
+		  <tr>
+		    
+		    
+		    <td><%= component.mpgno %></td>
+		    <td><%= component.model_no %></td>
+		    <td><%= component.eng_model_no %></td>
+		    <td><%= component.serial_no %></td>
+		    <td><%= component.eng_serial_no %></td>
+		    <td><%= component.price %></td>
+		    
+		    <td><%= component.commision_date.to_formatted_s(:long) %></td>
+		    <td><%= component.purchase_date.to_formatted_s(:long) %></td>
+		    <td><%= (component.commision_date += 1.year).to_formatted_s(:long) %></td>
+		    <td><%= component.depreciation %></td>
+		    <td><%= link_to 'Show', component %> | <%= link_to 'Edit', edit_component_path(component) %> 
+		    	| <%= link_to 'Delete', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+	</tbody>
 </table>
 
 <br />

@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  $('#equipments').dataTable
+    bJQueryUI: true
+  
   Morris.Line
     element: 'equipmentreport'
     data: $('#equipmentreport').data('monthlydata')

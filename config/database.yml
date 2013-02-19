@@ -3,10 +3,15 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+#Creating DB restore from dump file 
+# mega_power_dev
+# pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d mega_power_dev latest.dump
+
 development:
   adapter: postgresql
   encoding: unicode
-  database: mega_power_dev
+  #database: mega_power_dev
+  database: mega_power_production_backup
   host: localhost
   pool: 5
   username: postgres
