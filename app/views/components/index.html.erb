@@ -36,8 +36,8 @@
 		    <td><%= component.purchase_date.to_formatted_s(:long) %></td>
 		    <td><%= (component.commision_date += 1.year).to_formatted_s(:long) %></td>
 		    <td><%= component.depreciation %></td>
-		    <td><%= link_to 'Show', component %> | <%= link_to 'Edit', edit_component_path(component) %> 
-		    	| <%= link_to 'Delete', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <td>|<%= link_to 'Show', component %> |<%= link_to 'Edit', edit_component_path(component) %> 
+		    	|<%= link_to 'Delete', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		  </tr>
 		<% end %>
 	</tbody>

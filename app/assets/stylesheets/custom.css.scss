@@ -93,3 +93,7 @@ $grayMediumLight: #eaeaea;
 
 table tr.evenrow {background-color: white; }
 table tr.oddrow {background-color: rgb(238, 238, 238); }
+
+.no-space [class*="span"] {
+    margin-left: 10px;
+}
