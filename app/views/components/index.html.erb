@@ -3,8 +3,6 @@
 <table id="equipments" class="display table table-condensed">
 	<thead>
 	  <tr>
-	    
-	    
 	    <th>MPG no</th>
 	    <th>Model</th>
 	    <th>Eng model</th>
@@ -15,16 +13,13 @@
 	    <th>Purchase</th>
 	    <th>Warr. End</th>
 	    <th>Deprec.</th>
-	    
-	    <th></th>
+	    <th>Actions</th>
 	    
 	  </tr>
 	</thead>
 	<tbody>
 		<% @components.each do |component| %>
 		  <tr>
-		    
-		    
 		    <td><%= component.mpgno %></td>
 		    <td><%= component.model_no %></td>
 		    <td><%= component.eng_model_no %></td>

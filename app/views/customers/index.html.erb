@@ -4,13 +4,14 @@
   <tr>
     <th>Name</th>
     <th>Contact1</th>
+    <th>Contact Mob.</th>
     <th>Contact2</th>
     <th>Contact3</th>
     <th>Telephone</th>
     <th>Fax</th>
     <th>Email</th>
     <th>Address</th>
-    <th></th>
+    <th>Actions</th>
     <th></th>
     <th></th>
   </tr>
@@ -19,15 +20,16 @@
   <tr class="<%= cycle('oddrow', 'evenrow') %>">
     <td><%= customer.name %></td>
     <td><%= customer.contact1 %></td>
+    <td><%= customer.contact_phone %></td>
     <td><%= customer.contact2 %></td>
     <td><%= customer.contact3 %></td>
     <td><%= customer.telephone %></td>
     <td><%= customer.fax %></td>
     <td><%= customer.email %></td>
     <td><%= customer.address %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>|<%= link_to 'Show', customer %>
+    	|<%= link_to 'Edit', edit_customer_path(customer) %>
+    	|<%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
-  attr_accessible :address, :contact1, :contact2, :contact3,
+  default_scope order('name ASC')
+  
+  attr_accessible :address, :contact1, :contact2, :contact3, :contact_phone,
    :email, :fax, :name, :telephone, :rentals_attributes, :rentalitems_attributes, :component_ids
   
   validates_presence_of :address, :contact1, :name, :telephone, :email
