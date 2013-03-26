@@ -1,7 +1,10 @@
+
+
 <%= simple_form_for(@component, :validate => true) do |f| %>
 <%= f.error_notification %>
 
-<div class="form-inputs">
+<div class="form-inputs" >
+
 	<%= f.input :price %>
 	<%= f.input :depreciation %>
 	<%= f.input :mpgno, :label => 'MPG No.' %>
@@ -16,7 +19,7 @@
 	<%= f.input :depreciated_cost %>
 	<%= f.input :rating %>
 	
-	<div id="componentmonths">
+	<div ng-controller="IndexCtrl" id="componentmonths">
 		
 		<%= f.simple_fields_for :componentmonths do |builder|%>
 		
@@ -29,9 +32,19 @@
 	</div>
 </div>
 
-<div class="form-actions">
-	<%= f.button :submit %>
+<div class="form-actions" >
+	
+	<%= f.button :submit ,"Save Changes", :class => "btn-primary" %>
 </div>
+	
+<div id="sidebar" >
+	<p>
+		Click on the button below to update changes made on this form at any moment.
+	</p>
+	<%= f.button :submit ,"Save Changes", :class => "btn-primary"%>
+	
+	<%= link_to 'Back', components_path, :class => "btn btn-primary" %>
+</div>
+		
 <% end %>
-
 

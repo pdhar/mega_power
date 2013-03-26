@@ -9,10 +9,17 @@
 		<%= render 'layouts/shim' %>
 
 	</head>
+	<%= yield(:head) %>
 	<body>
+		<style>
+			.simple_form .btn {
+			    margin-left: 0px;
+			    color: white;
+			}
+		</style>
 		<%= render 'layouts/header' %>
 		
-		<div class="container-fluid">
+		<div id="wrapper" class="container-fluid">
 			<% flash.each do |key, value| %>
 		        <div class="alert alert-<%= key %>"><%= value %></div>
 		      <% end %>	
@@ -23,7 +30,7 @@
 					<%= render 'layouts/navlist' %>
 
 				</div>
-				<div class="span10">
+				<div class="span10" id="content">
 					<%= yield %>
 				</div>
 			</div>
@@ -31,7 +38,9 @@
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 
-	
+		<script>
+			$('#sidebar').portamento({wrapper: $('#wrapper')});	// set #wrapper as the visual coundary of the panel
+		</script>
 
 	</body>
 </html>

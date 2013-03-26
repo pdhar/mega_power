@@ -1,10 +1,4 @@
-$(document).ready(function() {
-    
-    $('#componentmonths').bind('cocoon:after-insert',
-         function() {
-           /* ... do something ... */
-          alert('hi');
-         });
-  
-
+$('.slideParent').live('click', function() {
+  $(this).parent().next().slideToggle();
 });
+

@@ -21,5 +21,9 @@
 //= require temp
 //= require components
 //= require dataTables/jquery.dataTables
+//= require x_angularctrl.js
+//= require t_cacoon.js
+//= require portamento-min.js
+
 
 

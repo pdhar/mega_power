@@ -97,3 +97,13 @@ table tr.oddrow {background-color: rgb(238, 238, 238); }
 .no-space [class*="span"] {
     margin-left: 10px;
 }
+
+//SideBar
+#wrapper {overflow: hidden; position:relative;}
+#content {width:686px; margin-right:10px; min-height:1200px;}
+#sidebar {width:284px; padding:10px; background: #eee; position:absolute; right:0; top:0; text-align: left;margin-top:30px;}
+      
+#portamento_container {position:absolute; right:50px; top:30px;} /* take the absolute positioning of the sidebar */
+#portamento_container #sidebar {}
+#portamento_container #sidebar.fixed {position:fixed; right:auto; top:auto;} /* become fixed position, but reset the top and right values */
+

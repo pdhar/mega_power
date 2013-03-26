@@ -1,16 +1,19 @@
 <br />
+
 <div class="nested-fields">
 	<h4 >
 	<table class="table table-condensed" style="background-color: black; color: white; ">
 		<tr>
-			<th>(Site <%= @index += 1%>) <%= f.input_field :date_month , :as => :display %> <%= f.input_field :site_name , :as => :display %></th>
-
+			<th>(Site <span class="counter"></span> ) <%= f.input_field :date_month , :as => :display %> <%= f.input_field :site_name , :as => :display %></th>
 		</tr>
 	</table></h4>
-
-	<div id="site_container_<%= @index %>" style='display: none;'>
-		
-		
+	
+	<span class="close-btn">
+		<a class="slideParent" href='javascript:;'>&mdash;</a>
+		<%= link_to_remove_association "X", f %>
+	</span>
+	
+	<div style='display: none;'>
 		
 		<%= f.input :site_name %>
 		<%= f.input :siteno , :label => 'Site No.'%>
@@ -23,25 +26,21 @@
 		<%= f.input :offhire_hrs %>
 		
 	</div>
-	<a id="show_site_container_<%= @index %>" class="button_toggle btn btn-small" href='javascript:;'>Show Event</a>
-	<%= link_to_remove_association "Remove Event", f, :class => "btn btn-small", :style => "text-align: left" %>
+	
 	<hr />
 </div>
 
 <script>
-$('#show_site_container_<%= @index %>').click(function(e) {
-	//Close all <div> but the <div> right after the clicked <a>
-	//$(e.target).next('div').siblings('div').slideUp();
-	//Toggle open/close on the <div> after the <a>, opening it if not open.
-	//$(e.target).next('div').slideToggle();
-	$('#site_container_<%= @index %>').slideToggle();
-
-	});		
+var index = 1;
 $("input.datepicker").each(function(i) {
   return $(this).datepicker({
     altFormat: "yy-mm-dd",
     dateFormat: "dd/mm/yy",
     altField: $(this).next()
   });
+});
+
+$('.counter').each(function(i, obj) {
+    $(this).text(index++);
 });
 </script>
