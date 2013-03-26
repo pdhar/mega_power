@@ -1,6 +1,4 @@
-<br />
-
-<div style="background-color: black; color: white;" class="nested-fields">
+<div style="background-color: black; color: white; margin-top: 30px;" class="nested-fields">
 	<div class="childHeading">
 		(Site <span class="counter"></span> ) <%= f.input_field :date_month , :as => :display %> <%= f.input_field :site_name , :as => :display %>
 	</div>
@@ -22,13 +20,13 @@
 		<%= f.input :onhire_hrs %>
 		<%= f.input :offhire_hrs %>
 		
-	</div>
-	
+	</div>	
 </div>
-<br />
+
+
 
 <script>
-var index = 1;
+var index = 0;
 $("input.datepicker").each(function(i) {
   return $(this).datepicker({
     altFormat: "yy-mm-dd",
@@ -38,6 +36,8 @@ $("input.datepicker").each(function(i) {
 });
 
 $('.counter').each(function(i, obj) {
-    $(this).text(index++);
+    $(this).text(++index);
 });
+
+$(".chosen").chosen();
 </script>

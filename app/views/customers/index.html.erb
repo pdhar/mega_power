@@ -1,37 +1,37 @@
 <h1>Listing customers</h1>
 
-<table class="table table-condensed">
-  <tr>
-    <th>Name</th>
-    <th>Contact1</th>
-    <th>Contact Mob.</th>
-    <th>Contact2</th>
-    <th>Contact3</th>
-    <th>Telephone</th>
-    <th>Fax</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Actions</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @customers.each do |customer| %>
-  <tr class="<%= cycle('oddrow', 'evenrow') %>">
-    <td><%= customer.name %></td>
-    <td><%= customer.contact1 %></td>
-    <td><%= customer.contact_phone %></td>
-    <td><%= customer.contact2 %></td>
-    <td><%= customer.contact3 %></td>
-    <td><%= customer.telephone %></td>
-    <td><%= customer.fax %></td>
-    <td><%= customer.email %></td>
-    <td><%= customer.address %></td>
-    <td>|<%= link_to 'Show', customer %>
-    	|<%= link_to 'Edit', edit_customer_path(customer) %>
-    	|<%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<table id="data-table" class="display table table-condensed">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Contact1</th>
+			<th>Contact Mob.</th>
+			<th>Telephone</th>
+			<th>Fax</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @customers.each do |customer| %>
+		<tr>
+			<td><%= customer.name %></td>
+			<td><%= customer.contact1 %></td>
+			<td><%= customer.contact_phone %></td>
+			<td><%= customer.telephone %></td>
+			<td><%= customer.fax %></td>
+			<td><%= customer.email %></td>
+			<td>
+			<address>
+				<%= customer.address %>
+			</address></td>
+			<td>|<%= link_to 'Show', customer %>
+			|<%= link_to 'Edit', edit_customer_path(customer) %>
+			|<%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+		<% end %>
+	</tbody>
 </table>
 
 <br />

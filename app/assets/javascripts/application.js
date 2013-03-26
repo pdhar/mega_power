@@ -18,12 +18,11 @@
 //= require morris
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require temp
-//= require components
+//= require datepicker_datatable
 //= require dataTables/jquery.dataTables
-//= require x_angularctrl.js
 //= require t_cacoon.js
 //= require portamento-min.js
+//= require chosen-jquery
 
 
 

@@ -4,3 +4,6 @@ $ ->
       altFormat: "yy-mm-dd"
       dateFormat: "dd/mm/yy"
       altField: $(this).next()
+      
+  $('#data-table').dataTable
+    bJQueryUI: true

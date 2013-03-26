@@ -3,8 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('#equipments').dataTable
-    bJQueryUI: true
   
   Morris.Line
     element: 'equipmentreport'
@@ -32,3 +30,4 @@ jQuery ->
     labels: ['Working hrs Running Total','Working hrs monthly']
     lineColors: ['brown','purple']
     xLabels: "month"  
+    
