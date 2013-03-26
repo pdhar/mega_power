@@ -1,50 +1,55 @@
-
-
 <%= simple_form_for(@component, :validate => true) do |f| %>
 <%= f.error_notification %>
 
-<div class="form-inputs" >
+<div id="content">
+	<div class="form-inputs" >
 
-	<%= f.input :price %>
-	<%= f.input :depreciation %>
-	<%= f.input :mpgno, :label => 'MPG No.' %>
-	<%= f.input :model_no %>
-	<%= f.input :eng_model_no %>
-	<%= f.input :serial_no %>
-	<%= f.input :eng_serial_no %>
-	
-	<%= f.input :commision_date , :as => :datepicker%>
-	
-	<%= f.input :purchase_date , :as => :datepicker%>
-	<%= f.input :depreciated_cost %>
-	<%= f.input :rating %>
-	
-	<div ng-controller="IndexCtrl" id="componentmonths">
-		
-		<%= f.simple_fields_for :componentmonths do |builder|%>
-		
-		<%= render 'componentmonth_fields' , f: builder %>
-		
-		<% end %>
-		<div class="links" >
-			<%= link_to_add_association "Add Event", f, :componentmonths , :class => "btn " %>
+		<%= f.input :price %>
+		<%= f.input :depreciation %>
+		<%= f.input :mpgno, :label => 'MPG No.' %>
+		<%= f.input :model_no %>
+		<%= f.input :eng_model_no %>
+		<%= f.input :serial_no %>
+		<%= f.input :eng_serial_no %>
+
+		<%= f.input :commision_date , :as => :datepicker%>
+
+		<%= f.input :purchase_date , :as => :datepicker%>
+		<%= f.input :depreciated_cost %>
+		<%= f.input :rating %>
+
+		<div id="componentmonths">
+
+			<%= f.simple_fields_for :componentmonths do |builder|%>
+
+			<%= render 'componentmonth_fields' , f: builder %>
+
+			<% end %>
+			
+			
+			<div class="links" style="margin-top: 30px;">
+				<%= link_to_add_association "Add Event", f, :componentmonths , :class => "btn btn-large btn-block btn-success " %>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="form-actions" >
-	
-	<%= f.button :submit ,"Save Changes", :class => "btn-primary" %>
+	<div class="form-actions" >
+
+		<%= f.button :submit ,"Save Changes", :class => "btn-primary" %>
+	</div>
+
 </div>
-	
 <div id="sidebar" >
 	<p>
 		Click on the button below to update changes made on this form at any moment.
 	</p>
 	<%= f.button :submit ,"Save Changes", :class => "btn-primary"%>
-	
+
 	<%= link_to 'Back', components_path, :class => "btn btn-primary" %>
 </div>
-		
+
 <% end %>
+<script>
+	$('#sidebar').portamento({wrapper: $('#wrapper')});	// set #wrapper as the visual coundary of the panel
+</script>
 

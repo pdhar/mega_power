@@ -30,17 +30,13 @@
 					<%= render 'layouts/navlist' %>
 
 				</div>
-				<div class="span10" id="content">
+				<div class="span10">
 					<%= yield %>
 				</div>
 			</div>
 			<br />
 			<%= debug(params) if Rails.env.development? %>
 		</div>
-
-		<script>
-			$('#sidebar').portamento({wrapper: $('#wrapper')});	// set #wrapper as the visual coundary of the panel
-		</script>
 
 	</body>
 </html>
