@@ -1,6 +1,6 @@
 <%= simple_form_for(@customer, :validate => true) do |f| %>
   <%= f.error_notification %>
-
+<div id="content">
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :contact1 %>
@@ -19,7 +19,7 @@
 		<%= render 'rental_fields' , f: builder %>
 		
 		<% end %>
-		<div class="links" >
+		<div class="links" style="margin-top: 30px;">
 			<%= link_to_add_association "Add Rental", f, :rentals , :class => "btn btn-large btn-block btn-success " %>
 		</div>
 	</div>
@@ -28,4 +28,24 @@
   <div class="form-actions">
     <%= f.button :submit ,"Save Changes", :class => "btn-primary"%>
   </div>
+</div>
+<div id="sidebar" >
+	<p>
+		Click on the button below to update changes made on this form at any moment.
+	</p>
+	<%= f.button :submit ,"Save Changes", :class => "btn-primary"%>
+
+	<%= link_to 'Back', customers_path, :class => "btn btn-primary" %>
+	
+	<%=
+	   link_to_if(controller?("customers") && action?("edit"), 'Show', @customer, :class => "btn btn-primary" ) do 
+	   
+	   end
+	%>
+	
+</div>  
 <% end %>
+<script>
+	$('#sidebar').portamento({wrapper: $('#wrapper')});	// set #wrapper as the visual coundary of the panel
+</script>
+

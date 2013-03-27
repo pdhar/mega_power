@@ -1,14 +1,14 @@
-<br />
-<div class="nested-fields">
-	<h4 >
-	<table class="table table-condensed" style="background-color: black; color: white; ">
-		<tr>
-			<th>(Rental <%= @index += 1%>) <%= f.input_field :name , :as => :display %> </th>
-
-		</tr>
-	</table></h4>
-
-	<div id="site_container_<%= @index %>" style='display: none;'>
+<div style="background-color: black; color: white; margin-top: 30px;" class="nested-fields">
+	<div class="childHeading">
+		(Rental <span class="counter"></span> ) <%= f.input_field :name , :as => :display %>
+	</div>
+	
+	<span class="close-btn">
+		<a class="slideParent" href='javascript:;'>&mdash;</a>
+		<%= link_to_remove_association "X", f %>
+	</span>
+	
+	<div style='display: none; border: 1px solid;background-color: white; color: black; padding-top: 35px;'>
 		
 		<%= f.input :name, :label => 'Site Name' %>
 		<%= f.input :siteno , :label => 'Site No.'%>
@@ -23,24 +23,19 @@
 			<% end %>
 			
 			<div class="links" >
-				<%= link_to_add_association "Add Item", f, :rentalitems , :class => "btn btn-mini" %>
+				<%= link_to_add_association "Add Item", f, :rentalitems , :class => "btn btn-mini btn-block btn-info" %>
 			</div>
 		</div>
-		<hr />
+		
 	</div>
 	
-	<a id="show_site_container_<%= @index %>" class="button_toggle btn btn-small" href='javascript:;'>Show Rental</a>
-	<%= link_to_remove_association "Remove Rental", f, :class => "btn btn-small", :style => "text-align: left" %>
-	<hr />
 </div>
 
 <script>
-$('#show_site_container_<%= @index %>').click(function(e) {
-	//Close all <div> but the <div> right after the clicked <a>
-	//$(e.target).next('div').siblings('div').slideUp();
-	//Toggle open/close on the <div> after the <a>, opening it if not open.
-	//$(e.target).next('div').slideToggle();
-	$('#site_container_<%= @index %>').slideToggle();
+var index = 0;
+$('.counter').each(function(i, obj) {
+    $(this).text(++index);
+});
 
-	});		
+$(".chosen").chosen();
 </script>

@@ -46,6 +46,13 @@
 	<%= f.button :submit ,"Save Changes", :class => "btn-primary"%>
 
 	<%= link_to 'Back', components_path, :class => "btn btn-primary" %>
+	
+	<%=
+	   link_to_if(controller?("components") && action?("edit"), 'Show', @component, :class => "btn btn-primary" ) do 
+	   
+	   end
+	%>
+	
 </div>
 
 <% end %>

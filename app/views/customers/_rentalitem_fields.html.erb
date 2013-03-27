@@ -1,13 +1,18 @@
 
-<div class="nested-fields" >
-	<br />
+<div class="nested-fields" style="background-color: black; color: white; margin-top: 20px;" >
+	<div style='border: 1px solid;background-color: white; color: black; margin: 10px;'>
+		
+		<span class="close-btn rentalitem-btn">
+		
+		<%= link_to_remove_association "X", f %>
+	</span>
+	
 	<%= f.input :start , :as => :datepicker %>
 	<%= f.input :end , :as => :datepicker %>
 	<%= f.input :price %>
 	<%= f.association :components, :label_method => :mpgno %>
 	
-	<%= link_to_remove_association "Remove Item", f, :class => "btn btn-mini", :style => "text-align: left" %>
-	<br /><br />
+	</div>
 </div>
 <script>
 	 $("input.datepicker").each(function(i) {
@@ -17,4 +22,6 @@
         altField: $(this).next()
       });
     });
+
+$(".chosen").chosen();
 </script>
