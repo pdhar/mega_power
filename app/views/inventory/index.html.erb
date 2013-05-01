@@ -1,0 +1,29 @@
+<h1>Listing Inventory</h1>
+
+<table class="table table-condensed">
+  <tr>
+    <th>Part name</th>
+    <th>Part no</th>
+    <th>Part Cost</th>
+    <th>Part description</th>
+    <th>Current Stock</th>
+    <th>Remaining Stock</th>
+    <th></th>
+  </tr>
+
+<% @parts.each do |part| %>
+  <tr class="<%= cycle('oddrow', 'evenrow') %>">
+    <td><%= part.part_name %></td>
+    <td><%= part.part_no %></td>
+    <td><%= part.part_cost %></td>
+    <td><%= part.part_description %></td>
+    <td><%= part.current_stock %></td>
+    <td><%= part.remain_stock %></td>
+    <td><%= link_to 'Edit', edit_part_path(part) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Part', new_part_path %>

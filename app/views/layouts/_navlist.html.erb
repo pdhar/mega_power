@@ -11,8 +11,8 @@
 	<li class="divider"></li>
 	<li class="<%= 'active' if controller?("parts") %>"><%= link_to "Parts", parts_path %></li>
 	<li class="<%= 'active' if controller?("labours") %>"><%= link_to "Labour", labours_path %></li>
-	
-	
+	<li class="divider"></li>
+	<li class="<%= 'active' if controller?("inventory") %>"><%= link_to "Inventory", inventory_path %></li>
 	<!-- NEW : if controller?("homepage") && action?("index", "show") 
 		OLD: if current_page?(parts_path) %>
 		-->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321124743) do
+ActiveRecord::Schema.define(:version => 20130430094925) do
 
   create_table "breakdowns", :force => true do |t|
     t.string   "breakdown_name"
@@ -138,8 +138,10 @@ ActiveRecord::Schema.define(:version => 20130321124743) do
     t.string   "part_no"
     t.text     "part_description"
     t.decimal  "part_cost"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.decimal  "current_stock",    :default => 0.0, :null => false
+    t.decimal  "remain_stock",     :default => 0.0, :null => false
   end
 
   create_table "rentalitems", :force => true do |t|

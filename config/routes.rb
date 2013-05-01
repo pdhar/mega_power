@@ -24,7 +24,8 @@ MegaPower::Application.routes.draw do
 
   resources :parts
   
-
+  match '/inventory',    to: 'inventory#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
