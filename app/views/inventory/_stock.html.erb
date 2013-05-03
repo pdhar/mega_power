@@ -70,10 +70,10 @@
 	});
 	$("#stock-subtract-<%= part.id %>").click(function() {
 		var current_stock = $('#current-stock-<%= part.id %>').val();
-		var change_stock = $('#stock-change-<%= part.id %>').val()
+		var change_stock = $('#stock-change-<%= part.id %>').val();
 		
 		if($.isNumeric(current_stock)&&$.isNumeric(change_stock)) {
-		   if(change_stock > current_stock){
+		   if(parseInt(change_stock) > parseInt(current_stock)){
 		   		alert("Cannot make current stock negative!");
 		   }	
 		   else{
