@@ -1,0 +1,90 @@
+<div id="role-options-<%= part.id %>" class="modal hide fade" style="display: none;">
+	<%= simple_form_for part, :url => update_inventory_path(part), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			&times;
+		</button>
+		<h3>Update Stock for <%= part.part_name %></h3>
+	</div>
+	<div class="modal-body">
+		<p class="text-center">
+			
+			<table class="table lead">
+				<tr >
+					<td>
+						Current Stock:
+					</td>
+					<td>
+						<%= part.current_stock %>
+						<input type="hidden" value="<%= part.current_stock %>" id='current-stock-<%= part.id %>' />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Change Stock:
+					</td>
+					<td>
+						<div class="input-append">
+						    <input class="span2" id="stock-change-<%= part.id %>" type="text" value="0" />
+						    <button class="btn btn-success" id="stock-add-<%= part.id %>" type="button">Add(+)</button>
+						    <button class="btn btn-warning" id="stock-subtract-<%= part.id %>" type="button">Remove(-)</button>
+					    </div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						New Stock:
+					</td>
+					<td>
+						<%= f.input_field :current_stock,  class: 'span2', readonly: 'true'  %>
+					</td>
+				</tr>
+			</table>
+			
+		</p>
+		
+		
+		<br />
+		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">
+			Close
+		</button>
+		<%= f.submit "Save changes", :class => "btn btn-primary" %>
+	</div>
+	<% end %>
+</div>
+
+<script>
+	$("#stock-add-<%= part.id %>").click(function() {
+		
+		var current_stock = $('#current-stock-<%= part.id %>').val();
+		var change_stock = $('#stock-change-<%= part.id %>').val()
+		
+		if($.isNumeric(current_stock)&&$.isNumeric(change_stock)) {
+		   $('#role-options-<%= part.id %>').find('#part_current_stock').val(parseInt(current_stock) + parseInt(change_stock));
+		}else{
+		   alert("Please enter a numeric value!")	;
+		}
+	});
+	$("#stock-subtract-<%= part.id %>").click(function() {
+		var current_stock = $('#current-stock-<%= part.id %>').val();
+		var change_stock = $('#stock-change-<%= part.id %>').val()
+		
+		if($.isNumeric(current_stock)&&$.isNumeric(change_stock)) {
+		   if(change_stock > current_stock){
+		   		alert("Cannot make current stock negative!");
+		   }	
+		   else{
+		   		$('#role-options-<%= part.id %>').find('#part_current_stock').val(parseInt(current_stock) - parseInt(change_stock));	
+		   }
+		   
+		}else{
+		   alert("Please enter a numeric value!")	;
+		}
+	});
+	
+   
+	
+</script>

@@ -1,5 +1,5 @@
 class Part < ActiveRecord::Base
-  attr_accessible :part_description, :part_name, :part_no, :part_cost
+  attr_accessible :part_description, :part_name, :part_no, :part_cost, :current_stock
   
   validates_presence_of :part_description, :part_name, :part_no 
   validates_uniqueness_of :part_no

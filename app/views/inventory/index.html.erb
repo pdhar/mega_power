@@ -19,7 +19,10 @@
     <td><%= part.part_description %></td>
     <td><%= part.current_stock %></td>
     <td><%= part.remain_stock %></td>
-    <td><%= link_to 'Edit', edit_part_path(part) %></td>
+    <td>
+      <a data-toggle="modal" href="#role-options-<%= part.id %>" class="btn btn-mini" type="button">Edit Stock</a>
+      <%= render 'stock' , part: part %>
+    </td>
   </tr>
 <% end %>
 </table>
