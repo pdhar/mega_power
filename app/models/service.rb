@@ -13,4 +13,6 @@ class Service < ActiveRecord::Base
   has_many :parts, :through => :servicepartsments
   has_and_belongs_to_many :componentmonths
   has_and_belongs_to_many :labours
+  
+  accepts_nested_attributes_for :servicepartsments, :allow_destroy => true
 end

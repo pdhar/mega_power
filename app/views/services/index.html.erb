@@ -21,6 +21,10 @@
     <td><%= service.service_cost %></td>
     <td><%= service.total_parts_cost %></td>
     <td><%= service.total_labour_cost %></td>
+    <td>
+      <a data-toggle="modal" href="#role-options-<%= service.id %>" class="btn btn-mini" type="button">Qty</a>
+      <%= render 'parts' , service: service %>
+    </td>
     <td><%= link_to 'Show', service %></td>
     <td><%= link_to 'Edit', edit_service_path(service) %></td>
     <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
