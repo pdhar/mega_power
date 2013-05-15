@@ -1,6 +1,6 @@
 class Service < ActiveRecord::Base
   attr_accessible :service_description, :service_name, :service_no, 
-  :part_ids, :service_cost, :labour_ids, :total_parts_cost, :total_labour_cost
+  :part_ids, :service_cost, :labour_ids, :total_parts_cost, :total_labour_cost, :servicepartsments_attributes
   
   
   

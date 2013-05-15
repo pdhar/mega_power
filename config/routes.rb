@@ -16,7 +16,12 @@ MegaPower::Application.routes.draw do
   resources :components
 
 
-  resources :services
+  resources :services 
+  #do
+    #collection do
+  #    put :update_individual_parts
+    #end  
+  #end
 
 
   resources :labours
@@ -27,6 +32,8 @@ MegaPower::Application.routes.draw do
   match '/inventory',    to: 'inventory#index'
   match 'update_inventory/:id(.:format)', to: 'inventory#update', as: :update_inventory
   
+  
+  match 'update_individual_parts/:id(.:format)', to: 'services#update', as: :update_individual_parts
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

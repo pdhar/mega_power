@@ -15,13 +15,17 @@
 .close-btn a {
     font-size: 15px;
     font-weight: bold;
+    background-color:#605F61;
     color: white;
     text-decoration: none;
-    
 }
 .close-btn a:hover {
   background-color:#605F61;
   border-radius: 25px;
+}
+
+.close-btn a:visited {
+  color: white;
 }
 
 .rentalitem-btn { 

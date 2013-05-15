@@ -1,6 +1,8 @@
 <div id="role-options-<%= service.id %>" class="modal hide fade" style="display: none;">
 
-<%= simple_form_for service, :url => update_inventory_path(service), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for service, :url => update_individual_parts_path(service.id), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
+	
+	
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			&times;
@@ -9,21 +11,23 @@
 	</div>
 	<div class="modal-body">
 		<p class="text-center">
-			
-			HELLO
-			
+			<p class="muted">Please specify the quantity for each part required to complete the service.</p>
+			<strong>Note: this amount will get deducted from the stock.</strong>
+			<br />
+			<table class="table lead">
+				
+				<%= f.simple_fields_for :servicepartsments do |builder| %> 		
+					<tr >
+						<td>
+							<%= builder.input :quantity , as: :integer , :label => builder.object.part_name(builder.object.part_id) %>
+						</td>
+					</tr>			
+		  		<% end %>
+				
+			</table>
 		</p>
-		<%= f.simple_fields_for :servicepartsments do |builder| %> 
-		
-		
-		<%= builder.object.part_name(builder.object.part_id) %>
-		
-		    <%= builder.label :service_id, "Date Added" %>
-  			<%= builder.text_field :service_id %>
-  		<% end %>
-		
+
 		<br />
-		
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">
