@@ -30,10 +30,14 @@ MegaPower::Application.routes.draw do
   resources :parts
   
   match '/inventory',    to: 'inventory#index'
+  match '/part_history/:id(.:format)',    to: 'inventory#history' , as: :part_history
+  
   match 'update_inventory/:id(.:format)', to: 'inventory#update', as: :update_inventory
   
   
   match 'update_individual_parts/:id(.:format)', to: 'services#update', as: :update_individual_parts
+  
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

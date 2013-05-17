@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515084348) do
+ActiveRecord::Schema.define(:version => 20130516105041) do
 
   create_table "breakdowns", :force => true do |t|
     t.string   "breakdown_name"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(:version => 20130515084348) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.decimal  "current_stock",    :default => 0.0, :null => false
-    t.decimal  "remain_stock",     :default => 0.0, :null => false
+    t.decimal  "used_stock",       :default => 0.0, :null => false
   end
 
   create_table "rentalitems", :force => true do |t|
@@ -182,6 +182,14 @@ ActiveRecord::Schema.define(:version => 20130515084348) do
     t.decimal  "service_cost"
     t.decimal  "total_parts_cost"
     t.decimal  "total_labour_cost"
+  end
+
+  create_table "stockhistories", :force => true do |t|
+    t.integer  "part_id"
+    t.integer  "change_value"
+    t.text     "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|

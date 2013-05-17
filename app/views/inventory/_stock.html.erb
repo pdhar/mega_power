@@ -37,6 +37,7 @@
 					</td>
 					<td>
 						<%= f.input_field :current_stock,  class: 'span2', readonly: 'true'  %>
+						<%= f.hidden_field :used_stock  %>
 					</td>
 				</tr>
 			</table>
@@ -63,7 +64,7 @@
 		var change_stock = $('#stock-change-<%= part.id %>').val()
 		
 		if($.isNumeric(current_stock)&&$.isNumeric(change_stock)) {
-		   $('#role-options-<%= part.id %>').find('#part_current_stock').val(parseInt(current_stock) + parseInt(change_stock));
+		   $('#role-options-<%= part.id %>').find('#part_current_stock').val(parseInt(current_stock) + parseInt(change_stock));		
 		}else{
 		   alert("Please enter a numeric value!")	;
 		}

@@ -15,7 +15,7 @@ class InventoryController < ApplicationController
   # PUT /parts/1.json
   def update
     @part = Part.find(params[:id])
-
+    
     respond_to do |format|
       if @part.update_attributes(params[:part])
         format.html { redirect_to inventory_path, notice: 'Part was successfully updated.' }
@@ -28,5 +28,18 @@ class InventoryController < ApplicationController
     
   end
  
-  
+  def history
+    @part = Part.find(params[:id])
+    
+    #@component = Component.new
+    #@part.stockhistories.build(:change_value => -2, :description => "Pranav removed 2 items from inventory", :created_at => DateTime.now.beginning_of_day)
+    #@part.stockhistories.build(:change_value => +2, :description => "Abbey added 2 items from inventory", :created_at => DateTime.now.beginning_of_day)
+    #2.times { @component.componentmonths.build }
+    
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @part }
+    end
+  end
 end

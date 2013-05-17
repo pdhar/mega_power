@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Part name:</b>
+  <%= @part.part_name %>
+</p>
+
+<p>
+  <b>Part no:</b>
+  <%= @part.part_no %>
+</p>
+
+<p>
+  <b>Part Cost</b>
+  <%= @part.part_cost %>
+</p>
+
+<p>
+  <b>Part description:</b>
+  <%= @part.part_description %>
+</p>
+
+
+<br />
+<h3>Stock Events for <%= @part.part_name %> (<%= @part.stockhistories.count %>)</h3>
+
+<ol class="microposts">
+
+	<% @part.stockhistories.each do |stock| %>
+	<li>
+	  <span class="content"><%= stock.description %></span>
+	</li>
+	<span class="timestamp">
+		Updated <%= time_ago_in_words(stock.created_at) %> ago. 
+	</span>
+	<% end %>
+</ol>
