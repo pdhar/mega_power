@@ -24,19 +24,44 @@ class Componentmonth < ActiveRecord::Base
   has_and_belongs_to_many :services, :after_add => :update_stock_used, :after_remove => :update_stock_add
   has_and_belongs_to_many :breakdowns
   
+  #after_initialize :init
+  before_save :update_stock_event 
+  before_destroy :update_stock_event
+  
+  attr_accessor :component_value
+  
 private
-
+  
+  def update_stock_event
+    unless component_value.nil?
+      component_value.description += self.component.mpgno
+      component_value.save
+    end
+    
+  end
+  
   def update_stock_add(service)
-    #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Service Removed #{service.inspect}")
+    
     service.servicepartsments.each do |part|
       Part.update_all(["used_stock = used_stock - ?", part.quantity], :id => part.part_id) 
+      unless self.component.nil?
+        self.component_value = Stockhistory.create(:part_id => part.part_id, :change_value => (-1*part.quantity), :description => "Removed " + part.quantity.to_i.to_s + " items from inventory for equipment " + self.component.mpgno)    
+      else
+        self.component_value = Stockhistory.create(:part_id => part.part_id, :change_value => (-1*part.quantity), :description => "Removed " + part.quantity.to_i.to_s + " items from inventory for equipment ")        
+      end
     end
   end
   
   def update_stock_used(service)
-    #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Service Added #{service.inspect}")
+    #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Service Added cval #{self.component.inspect}")
     service.servicepartsments.each do |part|
       Part.update_all(["used_stock = used_stock + ?", part.quantity], :id => part.part_id) 
+      
+      unless self.component.nil?
+        self.component_value = Stockhistory.create(:part_id => part.part_id, :change_value => part.quantity, :description => "Added " + part.quantity.to_i.to_s + " items to inventory for equipment " + self.component.mpgno)    
+      else
+        self.component_value = Stockhistory.create(:part_id => part.part_id, :change_value => part.quantity, :description => "Added " + part.quantity.to_i.to_s + " items to inventory for equipment ")# + self.component.mpgno)        
+      end
     end
   end
     
