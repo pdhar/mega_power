@@ -13,8 +13,12 @@ class Part < ActiveRecord::Base
   validates :part_cost, :presence => true,
             :numericality => true,
             :format => { :with => /^\d{1,6}(\.\d{0,2})?$/ }
+  validates :used_stock, :numericality => {:greater_than_equal_to => 0, :message => "Used Stock cannot be less than zero."}
+  validates :current_stock, :numericality => {:greater_than_equal_to => 0, :message => "Current Stock cannot be less than zero."}
   
-  has_many :stockhistories
+  validate :price_is_less_than_total
+  
+  has_many :stockhistories, :dependent => :destroy
   
   has_many :servicepartsments
   has_many :services, :through => :servicepartsments
@@ -24,6 +28,15 @@ class Part < ActiveRecord::Base
   
   
 private  
+  def price_is_less_than_total
+     
+    @amount_change = self.used_stock.to_i - self.used_stock_was.to_i
+    if @amount_change > self.current_stock_was.to_i
+      errors.add(:used_stock, "Not enough " + self.part_name + "s are available in the inventory. Current Stock: " + self.current_stock.to_i.to_s + " Minimum Required Stock: " + @amount_change.to_i.to_s)    
+    else
+      return true   
+    end
+  end
   
   def update_stock_event
     

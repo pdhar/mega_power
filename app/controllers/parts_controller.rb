@@ -64,6 +64,7 @@ class PartsController < ApplicationController
         format.html { redirect_to @part, notice: 'Part was successfully updated.' }
         format.json { head :no_content }
       else
+        flash[:error] = @part.errors.full_messages.to_sentence
         format.html { render action: "edit" }
         format.json { render json: @part.errors, status: :unprocessable_entity }
       end

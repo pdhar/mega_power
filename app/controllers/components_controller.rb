@@ -164,48 +164,50 @@ class ComponentsController < ApplicationController
     #Rails.logger.debug("######################Test Part Cost: #{@component.inspect}")
     
     respond_to do |format|
-      if @component.update_attributes(params[:component])
+      begin @component.update_attributes(params[:component])
         @component.total_service_cost = 0
     
-    @component.componentmonths.each do |v|
-      total_service_cost_per_date = 0
-      total_service_parts_per_date = 0
-      total_service_labour_per_date = 0
-      total_break_cost_per_date = 0
-      total_break_parts_per_date = 0
-      total_break_labour_per_date = 0
-      total_hrs = v.offhire_hrs - v.onhire_hrs  
-      
-      v.services.each do |x|
-        #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
-        @component.total_service_cost += x.service_cost
-        total_service_cost_per_date += x.service_cost
-        total_service_parts_per_date += x.total_parts_cost
-        total_service_labour_per_date += x.total_labour_cost
-      end
-      
-      v.breakdowns.each do |x|
-        #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
-        @component.total_service_cost += x.breakdown_cost
-        total_break_cost_per_date += x.breakdown_cost
-        total_break_parts_per_date += x.total_parts_cost
-        total_break_labour_per_date += x.total_labour_cost
-        #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Total Service Cost: #{total_break_cost_per_date}")
-      end
-      
-      @component.componentmonths.find(v.id).update_attribute(:total_service_parts, total_service_parts_per_date )
-      @component.componentmonths.find(v.id).update_attribute(:total_service_cost, total_service_cost_per_date )
-      @component.componentmonths.find(v.id).update_attribute(:total_service_labour, total_service_labour_per_date )
-      
-      @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
-      @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
-      @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
-      @component.componentmonths.find(v.id).update_attribute(:total_hrs, total_hrs )
-    end
+        @component.componentmonths.each do |v|
+          total_service_cost_per_date = 0
+          total_service_parts_per_date = 0
+          total_service_labour_per_date = 0
+          total_break_cost_per_date = 0
+          total_break_parts_per_date = 0
+          total_break_labour_per_date = 0
+          total_hrs = v.offhire_hrs - v.onhire_hrs  
+          
+          v.services.each do |x|
+            #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
+            @component.total_service_cost += x.service_cost
+            total_service_cost_per_date += x.service_cost
+            total_service_parts_per_date += x.total_parts_cost
+            total_service_labour_per_date += x.total_labour_cost
+          end
+          
+          v.breakdowns.each do |x|
+            #Rails.logger.debug("Total Service Cost: #{x.service_cost}")
+            @component.total_service_cost += x.breakdown_cost
+            total_break_cost_per_date += x.breakdown_cost
+            total_break_parts_per_date += x.total_parts_cost
+            total_break_labour_per_date += x.total_labour_cost
+            #Rails.logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Total Service Cost: #{total_break_cost_per_date}")
+          end
+          
+          @component.componentmonths.find(v.id).update_attribute(:total_service_parts, total_service_parts_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_service_cost, total_service_cost_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_service_labour, total_service_labour_per_date )
+          
+          @component.componentmonths.find(v.id).update_attribute(:total_break_parts, total_break_parts_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_break_cost, total_break_cost_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_break_labour, total_break_labour_per_date )
+          @component.componentmonths.find(v.id).update_attribute(:total_hrs, total_hrs )
+        end
     
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }
         format.json { head :no_content }
-      else
+      rescue Exception => ex
+        flash[:error] = ex.message
+        #flash[:error] = @component.errors.full_messages.to_sentence
         format.html { render action: "edit" }
         format.json { render json: @component.errors, status: :unprocessable_entity }
       end
