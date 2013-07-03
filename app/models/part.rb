@@ -20,7 +20,7 @@ class Part < ActiveRecord::Base
   
   has_many :stockhistories, :dependent => :destroy
   
-  has_many :servicepartsments
+  has_many :servicepartsments, :dependent => :destroy
   has_many :services, :through => :servicepartsments
   has_and_belongs_to_many :breakdowns
   

@@ -1,0 +1,177 @@
+POSTGRES Setup (Changes to config/database.yml file):
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_app_development
+  pool: 5
+  username: postgres
+  password: wasd@123
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: sample_app_test
+  pool: 5 
+  username: postgres
+  password: wasd@123  
+
+Creating a new db
+rake db:create:all
+
+migrating db commands
+bundle exec rake db:migrate
+bundle exec rake db:test:prepare
+  
+git commands:
+
+git push -- to push to remote server (github)
+git merge <branch name)
+git commit -am "Message"
+git checkout (branch name)
+
+
+Issue with Mac OS X Postgresql Installation:
+Error:
+checking for pg_config... no
+No pg_config... trying anyway. If building fails, please try again with
+ --with-pg-config=/path/to/pg_config
+checking for libpq-fe.h... no
+
+Solution:
+sudo PATH=$PATH:/Library/PostgreSQL/9.2/bin gem install pg
+
+sudo PATH=$PATH:/Library/PostgreSQL/9.2/bin/ bundle install
+
+replace 9.1 with your version number.
+
+
+Installing Homebrew
+ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+
+Installing Node.js
+
+http://howtonode.org/how-to-install-nodejs
+brew install node
+
+or 
+
+git clone git://github.com/ry/node.git
+cd node
+./configure
+make
+sudo make install
+
+Adding Devise Authentication:
+
+add 'devise' gem to Gemfile
+run command: rails g devise:install
+set for heroku deployment: config.assets.initialize_on_precompile = false
+
+create user model using: rails devise user
+run: rake db:migrate
+
+add links for log in and sign up
+
+run to generate custom views: rails g devise:views
+ 
+omniauth for twitter(Add Later)
+
+############SSH KEY ISSUES #########
+
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+pbcopy -sel clip < ~/.ssh/id_rsa.pub
+
+
+###Heroku Issue#####
+Problem: App not found after renaming an app from the website:
+
+Solution: 
+git remote rm heroku
+git remote add heroku git@heroku.com:yourappname.git
+
+############### Rake Commands for Database manipulation #################
+To generate a scaffold:
+rails g scaffold page name permalink:string:index content:text --skip-stylesheets
+
+
+### TEMP ####
+asd
+
+<div class="control-group">
+  	<div class="form-inputs">
+  	
+  	<label class="control-label" for="inputEmail"><i class="icon-user"></i> Full Name</label>
+    <%= f.text_field :name, :placeholder => 'Please Enter Full Name' %>
+     <label class="control-label" for="inputEmail"><i class="icon-envelope"></i> Email</label>
+    <%= f.text_field :email, :placeholder => 'Please Enter your Email ID' %>
+    
+    <label class="control-label" for="inputEmail"><i class="icon-question-sign"></i> Subject</label>
+    <%= f.text_field :subject, :placeholder => 'Subject of your Query?' %>
+    
+    <label class="control-label" for="inputEmail"><i class="icon-pencil"></i> Message</label>
+    <%= f.text_area :message , :rows => 5, :placeholder => 'Please Enter your Query.' %>
+    </div>
+    
+    
+    
+  
+  </div>
+
+  <div class="controls">
+    <%= f.button :submit, 'Send Message', :class => 'btn btn-success' %>
+  </div>
+  123
+ ddsds'
+ 
+ 
+ I'll assume your problem was that the machine on which you first created the repo crapped out when you tried to issue the git pull command.
+
+When you clone an existing git repository (like you did on your 2nd machine, the MacBook Pro), you're automatically set up to so your git pull commands will automatically merge the remote with your local changes.
+
+However, when you initially create a repo and then share it on a remote repository, you have to issue a few commands to make things as automated as a on cloned repo.
+
+# GitHub gives you that instruction, you've already done that
+# git remote add origin git@github.com:user_name/repo_name.git
+
+# GitHub doesn't specify the following instructions
+git config branch.master.remote origin
+git config branch.master.merge refs/heads/master
+These last few instructions configure git so future git pull's from this repo will merge all remote changes automatically.
+
+The following is a bit of shameless self-promotion. If you use Ruby, I have created a Ruby-based tool that lets you deal with all these kinds of things with git remote branches. The tool is called, unsurprisingly, git_remote_branch :-)
+
+If you don't use Ruby, my tool is probably gonna be too much of a hassle to install. What you can do is look at an old post on my blog, where most of the stuff grb can do for you was explicitly shown. Whip out your git notes file :-)
+
+
+### Guide to clone a repo to a new computer and push it back to github ####
+When u clone a repo and make changes and try to push it back to github you get the following error
+
+fatal: remote error: 
+You can't push to git://github.com/my_user_name/my_repo.git
+Use git@github.com:my_user_name/my_repo.git
+
+Solution:
+
+git remote set-url origin git@github.com:my_user_name/my_repo.git
+add the config setting of user name and email or setup SSH key on github
+by copying the SSH key as follows:
+
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+pbcopy -sel clip < ~/.ssh/id_rsa.pub
+
+then setup a heroku remote using: 
+heroku git:remote -a falling-wind-1624
+
+Making a Database Backup:
+
+heroku pgbackups:capture
+curl -o latest.dump `heroku pgbackups:url`
+
+Open PG Admin 3 ... create a new database ... restore from local dump file select owner and privelege options to exclude.
+
+
+
+
